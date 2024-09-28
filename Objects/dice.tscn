@@ -16,6 +16,4 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ResultLabel" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "0"
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer"]

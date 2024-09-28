@@ -31,6 +31,12 @@ public partial class Board : Node2D
 		questionModal = (QuestionMenu)GD.Load<PackedScene>("res://Scenes/question_menu.tscn").Instantiate();
 		questionModal.Position = new Vector2(0,0);
 		questionModal.Connect("AnsweredQuestion", new Callable(this, nameof(OnQuestionAnswered)));
+		
+		dice = (Dice)GD.Load<PackedScene>("res://Objects/dice.tscn").Instantiate();
+		dice.Position = new Vector2(4.5f * fieldSizePixels, 3.5f * fieldSizePixels);
+		rollButton.Position = new Vector2(4.25f * fieldSizePixels, 3.5f * fieldSizePixels + fieldSizePixels/4 + 10);
+		rollButton.Size = new Vector2(fieldSizePixels/2, fieldSizePixels/4);
+		AddChild(dice);
 	}
 
 	private void CreateBoard()
@@ -94,11 +100,6 @@ public partial class Board : Node2D
 				}
 			}
 		}
-
-		dice = (Dice)GD.Load<PackedScene>("res://Objects/dice.tscn").Instantiate();
-		dice.Position = new Vector2(3 * fieldSizePixels, 3 * fieldSizePixels);
-		rollButton.Position = new Vector2(3 * fieldSizePixels - rollButton.GetSize()[1]/2, 3 * fieldSizePixels + 50);
-		AddChild(dice);
 		
 		Globals.Instance.Tiles = tiles;
 	}

@@ -13,13 +13,8 @@ public partial class Field : Area2D
 
 	public List<Field> neighbours = new List<Field>();
 	public Field previouslyVisitedField = null;
-<<<<<<< HEAD
-	public bool Clickable = false;
-	
-=======
 	public bool Clickable = true;
 	public Board board;
->>>>>>> b085a6f814310c3541ad71144041b6ba004a470b
 	
 
 	public override void _Ready()

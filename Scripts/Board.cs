@@ -24,7 +24,7 @@ public partial class Board : Node2D
 		
 		currentPlayer = GetNode<Pawn>("Pawn");
 		currentPlayer.Position = new Vector2(tiles.FirstOrDefault().Position.X + fieldSizePixels/2, tiles.FirstOrDefault().Position.Y + fieldSizePixels/2);;
-		currentPlayer.CurrnetField = tiles.FirstOrDefault();
+		currentPlayer.CurrentField = tiles.FirstOrDefault();
 	}
 
 	private void CreateBoard()
@@ -101,7 +101,7 @@ public partial class Board : Node2D
 	{
 		var roll = dice.OnRollButtonPressed();
 		rollButton.Disabled = true;
-		var currentField = currentPlayer.CurrnetField;
+		var currentField = currentPlayer.CurrentField;
 		var result = GetAvailableFields(roll, currentField);
 		foreach (var field in result)
 		{
@@ -114,7 +114,7 @@ public partial class Board : Node2D
 	private void MoveToField(Field newField)
 	{
 		currentPlayer.Position = new Vector2(newField.Position.X + fieldSizePixels/2, newField.Position.Y + fieldSizePixels/2);
-		currentPlayer.CurrnetField = newField;
+		currentPlayer.CurrentField = newField;
 		
 		foreach (var field in tiles)
 		{

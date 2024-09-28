@@ -32,6 +32,21 @@ public partial class Board : Node2D
 		questionModal.Position = new Vector2(0,0);
 		questionModal.Connect("AnsweredQuestion", new Callable(this, nameof(OnQuestionAnswered)));
 	}
+	
+	public override void _Process(double delta){
+		drawCurrentPawnItems();
+	}
+	
+	public override void _Draw() {
+		int index = 0;
+		
+		foreach(var item in Globals.Instance.CurrentPlayerPawn.items) {
+			GD.Print(item);
+			int rowsCount = 7;
+			DrawTexture(item.sprite, new Vector2(index * Globals.FieldSizePixels, rowsCount * Globals.FieldSizePixels + 16));
+			index++;
+		}
+	}
 
 	private void CreateBoard()
 	{
@@ -171,6 +186,12 @@ public partial class Board : Node2D
 	private void OnQuestionAnswered(bool correctAnswer)
 	{
 		GD.Print($"Question answered {correctAnswer}");
+	}
+	
+	public void drawCurrentPawnItems() {
+			QueueRedraw();
+		
+		
 	}
 	
 }

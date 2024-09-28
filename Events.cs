@@ -41,7 +41,7 @@ public class TrapGetEvent: Event {
 	}
 	
 	public override void resolve() {
-		//todo add item to current player backpack
+		this.currentPlayerPawn.items.Add(new Boombox("dzewo.png", this.currentPlayerPawn));
 	}
 	
 }

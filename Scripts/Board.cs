@@ -5,8 +5,6 @@ using System.Collections.Generic;
 public partial class Board : Node2D
 {
 	private List<Field> tiles = new List<Field>();
-	private Pawn currentPlayer;
-	private Dice dice;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -20,7 +18,7 @@ public partial class Board : Node2D
 			{ Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL },
 			{ Field.TileType.NORMAL, null, Field.TileType.NORMAL, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.NORMAL, null, Field.TileType.NORMAL },
 			{ Field.TileType.NORMAL,  Field.TileType.NORMAL, Field.TileType.SPECIAL, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.SPECIAL, Field.TileType.NORMAL, Field.TileType.NORMAL },
-			{ Field.TileType.NORMAL, null, null, null, null, null, null, null, null, null, null, null, Field.TileType.NORMAL },
+			{ Field.TileType.NORMAL, null, null, null, null, null, Field.TileType.FINAL, null, null, null, null, null, Field.TileType.NORMAL },
 			{ Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.SPECIAL, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.SPECIAL, Field.TileType.NORMAL, Field.TileType.NORMAL },
 				{ Field.TileType.NORMAL, null, Field.TileType.NORMAL, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.NORMAL, null, Field.TileType.NORMAL },
 							{ Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL },
@@ -28,7 +26,6 @@ public partial class Board : Node2D
 		};
 
 		var fieldSizePixels = 128;
-		Field previousField = null;
 		Field[,] tileMap = new Field[boardLayout.GetLength(0), boardLayout.GetLength(1)];
 
 		// Iterate over the 2D board layout and create valid tiles
@@ -76,10 +73,5 @@ public partial class Board : Node2D
 				}
 			}
 		}
-
-		dice = (Dice)GD.Load<PackedScene>("res://Objects/dice.tscn").Instantiate();
-		dice.Position = new Vector2(3 * fieldSizePixels, 3 * fieldSizePixels);
-		dice.SetBoard(this);
-		AddChild(dice);
 	}
 }

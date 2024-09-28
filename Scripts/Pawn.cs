@@ -36,10 +36,6 @@ public partial class Pawn : Area2D
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Left)
-		{
-			targetPosition = GetGlobalMousePosition();
-			isMoving = true;
-		}
+		
 	}
 }

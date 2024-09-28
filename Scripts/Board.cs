@@ -7,10 +7,15 @@ public partial class Board : Node2D
 	private List<Field> tiles = new List<Field>();
 	private Pawn currentPlayer;
 	private Dice dice;
+	private Button rollButton;
+	
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		rollButton = GetNode<Button>("RollButton");
+		rollButton.Pressed += OnRollButtonPressed;
+		
 		CreateBoard();
 	}
 
@@ -110,7 +115,13 @@ public partial class Board : Node2D
 
 		dice = (Dice)GD.Load<PackedScene>("res://Objects/dice.tscn").Instantiate();
 		dice.Position = new Vector2(3 * fieldSizePixels, 3 * fieldSizePixels);
-		dice.SetBoard(this);
+		rollButton.Position = new Vector2(3 * fieldSizePixels - rollButton.GetSize()[1]/2, 3 * fieldSizePixels + 20);
 		AddChild(dice);
+	}
+
+	private void OnRollButtonPressed()
+	{
+		var roll = dice.OnRollButtonPressed();
+		GD.Print(roll);
 	}
 }

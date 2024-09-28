@@ -64,17 +64,17 @@ public partial class Board : Node2D
 		}
 
 		currentField.Position = position;
-		currentField.previousField = previousField;
+		currentField.neighbours.Add(previousField);
 		AddChild(currentField);
 		index++;
 		if(previousField != null) {
-			previousField.nextField = currentField;
+			previousField.neighbours.Add(currentField);
 		}
 		previousField = currentField;
 	}
 	
-		tiles[0].previousField = previousField;
-		tiles[tiles.Count -1 ].nextField = tiles[0];
+		tiles[0].neighbours.Add(previousField);
+		tiles[tiles.Count -1 ].neighbours.Add(tiles[0]);
 	
 		int[,] specialPathsIndexPositions = {
 			{2, 1}, {1,2}, {fieldsInRow - 3, 1}, {fieldsInRow -2, 2 }, {1, fieldsInColumn - 3}, {2, fieldsInColumn-2}, {fieldsInRow - 3, fieldsInColumn - 2}, {fieldsInRow -2, fieldsInColumn -3},

@@ -8,7 +8,7 @@ public partial class Field : Area2D
 	
 	private CollisionShape2D collisionShape;
 	
-	public enum TileType { QUESTION, NORMAL, SPECIAL, PENALTY }
+	public enum TileType { QUESTION, NORMAL, SPECIAL, EVENT,FINAL }
 	public TileType tileType = TileType.NORMAL;
 	
 	public List<Field> neighbours = new List<Field>();
@@ -82,13 +82,51 @@ public partial class Field : Area2D
 			case TileType.SPECIAL:
 				sprite.Texture = (Texture2D)GD.Load("res://Assets/pole_magia.png");
 				break;
-			case TileType.PENALTY:
-				sprite.Texture = (Texture2D)GD.Load("res://textures/penalty_tile.png");
+			case TileType.EVENT:
+				sprite.Texture = (Texture2D)GD.Load("res://Assets/pole_magia.png");
+				break;
+			case TileType.FINAL:
+				sprite.Texture = (Texture2D)GD.Load("res://Assets/pole_magia.png");
 				break;
 		}
 		
 		float scaleX = 128.0f / sprite.Texture.GetWidth();
 		float scaleY = 128.0f / sprite.Texture.GetHeight();
 		sprite.Scale = new Vector2(scaleX, scaleY);
+	}
+	
+	public void onEnter() {
+			switch(tileType) {
+				case TileType.QUESTION:
+				askQuestion();
+				break;
+			case TileType.NORMAL:
+				break;
+			case TileType.SPECIAL:
+				getGoalPiece();
+				break;
+			case TileType.FINAL:
+				checkWinningCondition();
+				break;
+			case TileType.EVENT:
+				getEvent();
+				break;
+			}
+	}
+	public void askQuestion() {
+		
+		
+	}
+	
+	public void getGoalPiece() {
+		
+	}
+	
+	public void checkWinningCondition() {
+		
+	}
+	
+	public void getEvent() {
+		EventFactory.getEvent().resolve();
 	}
 }

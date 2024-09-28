@@ -71,14 +71,33 @@ public partial class Board : Node2D
 	
 	
 	
-		int[,] specialPathsIndexPositions = {{2, 1}, {1,2}, {fieldsInRow - 3, 1}, {fieldsInRow -2, 2 }, {1, fieldsInColumn - 3}, {2, fieldsInColumn-2}, {fieldsInRow - 3, fieldsInColumn - 2}, {fieldsInRow -2, fieldsInColumn -3}};
+		int[,] specialPathsIndexPositions = {
+			{2, 1}, {1,2}, {fieldsInRow - 3, 1}, {fieldsInRow -2, 2 }, {1, fieldsInColumn - 3}, {2, fieldsInColumn-2}, {fieldsInRow - 3, fieldsInColumn - 2}, {fieldsInRow -2, fieldsInColumn -3},
+		 {(int)Math.Floor(fieldsInRow/2f), 1},
+		 {(int)Math.Floor(fieldsInRow/2f), 2},
+		 {(int)Math.Floor(fieldsInRow/2f), 4},
+		 {(int)Math.Floor(fieldsInRow/2f), 5},
+		};
 		
-		for(int i = 0; i< 8; i++){
+		for(int i = 0; i< 12; i++){
 		 
 			var currentSpecialField = (Field)GD.Load<PackedScene>("res://scenes/Field.tscn").Instantiate();
 		currentSpecialField.tileType = Field.TileType.NORMAL;
 		currentSpecialField.Position = new Vector2(specialPathsIndexPositions[i, 0] * fieldSizePixels, specialPathsIndexPositions[i, 1] * fieldSizePixels);
 		AddChild(currentSpecialField);
 		}
+		
+		int[,] specialFieldsIndexes = {
+			{2, 2}, {fieldsInRow - 3, 2}, {2, fieldsInColumn - 3},  {fieldsInRow -3, fieldsInColumn -3},
+		};
+				
+		for(int i = 0; i< 4; i++){
+			var currentSpecialFieldMain = (Field)GD.Load<PackedScene>("res://scenes/Field.tscn").Instantiate();
+			currentSpecialFieldMain.tileType = Field.TileType.SPECIAL;
+			currentSpecialFieldMain.Position = new Vector2(specialFieldsIndexes[i, 0] * fieldSizePixels, specialFieldsIndexes[i, 1] * fieldSizePixels);
+			AddChild(currentSpecialFieldMain);
+		}
+		
+		
 	}
 }

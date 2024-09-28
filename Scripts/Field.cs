@@ -3,7 +3,7 @@ using System;
 
 public partial class Field : Area2D
 {
-	public enum TileType { QUESTION, NORMAL, BONUS, PENALTY }
+	public enum TileType { QUESTION, NORMAL, SPECIAL, PENALTY }
 	public TileType tileType = TileType.NORMAL;
 	
 	// Called when the node enters the scene tree for the first time.
@@ -30,8 +30,8 @@ public partial class Field : Area2D
 			case TileType.NORMAL:
 				sprite.Texture = (Texture2D)GD.Load("res://Assets/pole_1.png");
 				break;
-			case TileType.BONUS:
-				sprite.Texture = (Texture2D)GD.Load("res://textures/bonus_tile.png");
+			case TileType.SPECIAL:
+				sprite.Texture = (Texture2D)GD.Load("res://Assets/pole_magia.png");
 				break;
 			case TileType.PENALTY:
 				sprite.Texture = (Texture2D)GD.Load("res://textures/penalty_tile.png");

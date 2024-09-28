@@ -68,6 +68,7 @@ public partial class Board : Node2D
 		currentField.Position = position;
 		currentField.neighbours.Add(previousField);
 		AddChild(currentField);
+		tiles.Add(currentField);
 		index++;
 		if(previousField != null) {
 			previousField.neighbours.Add(currentField);
@@ -93,6 +94,8 @@ public partial class Board : Node2D
 		currentSpecialField.Position = new Vector2(specialPathsIndexPositions[i, 0] * fieldSizePixels, specialPathsIndexPositions[i, 1] * fieldSizePixels);
 		AddChild(currentSpecialField);
 		}
+		
+		
 		
 		int[,] specialFieldsIndexes = {
 			{2, 2}, {fieldsInRow - 3, 2}, {2, fieldsInColumn - 3},  {fieldsInRow -3, fieldsInColumn -3},

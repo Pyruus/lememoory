@@ -8,4 +8,4 @@ script = ExtResource("1_jsrct")
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 48.0
 offset_bottom = 83.0
-color = Color(0, 0.0196078, 1, 1)
+color = Color(0.145098, 0.890196, 0.0431373, 1)

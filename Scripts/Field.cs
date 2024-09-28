@@ -5,65 +5,39 @@ public partial class Field : Area2D
 {
 	[Signal]
 	public delegate void ClickedEventHandler();
-	
+
 	private CollisionShape2D collisionShape;
-	
-	public enum TileType { QUESTION, NORMAL, SPECIAL, EVENT,FINAL }
+
+	public enum TileType { QUESTION, NORMAL, SPECIAL, EVENT, FINAL }
 	public TileType tileType = TileType.NORMAL;
-	
+
 	public List<Field> neighbours = new List<Field>();
 	public Field previouslyVisitedField = null;
-	public bool Clickable = false;
-
+	public bool Clickable = true;
 	
-	// Called when the node enters the scene tree for the first time.
+	
+
 	public override void _Ready()
 	{
+		
 		setTileTexture();
-		InputPickable = true;	
+		InputPickable = true;
 		collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
-		InputEvent += OnInputEvent;
+
+		// Connect the input event signal
+		Connect("input_event", new Callable(this, nameof(OnInputEvent)));
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
 
-	public override void _InputEvent(Viewport viewport, InputEvent @event, int shapeIdx)
-	{
-		GD.Print($"Clicked on {Name}!");
-	}
-
-	private void OnInputEvent(Node viewport, InputEvent @event, long shapeIdx)
+	public void OnInputEvent(Node viewport, InputEvent @event, int shapeIdx)
 	{
 		if (@event is InputEventMouseButton mouseEvent &&
 			mouseEvent.ButtonIndex == MouseButton.Left &&
-			mouseEvent.Pressed )
+			mouseEvent.Pressed)
 		{
-				GD.Print($"Clicked on {Name}!");
-				EmitSignal(SignalName.Clicked);
-		}
-	}
-	
-	private bool IsPointInShape(Vector2 point)
-	{
-		if (collisionShape == null) return false;
-
-		var shape = collisionShape.Shape;
-		var localPoint = ToLocal(point);
-
-		switch (shape)
-		{
-			case CircleShape2D circle:
-				return localPoint.LengthSquared() <= circle.Radius * circle.Radius;
-			case RectangleShape2D rectangle:
-				var extents = rectangle.Size / 2;
-				return Mathf.Abs(localPoint.X) <= extents.X && Mathf.Abs(localPoint.Y) <= extents.Y;
-			// Add more cases for other shape types if needed
-			default:
-				GD.PushWarning($"Unsupported shape type for {Name}");
-				return false;
+			GD.Print($"Clicked on {Name}!");
+			EmitSignal(SignalName.Clicked);
+			onEnter(); // Call onEnter when clicked
 		}
 	}
 	

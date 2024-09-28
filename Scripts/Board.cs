@@ -52,7 +52,6 @@ public partial class Board : Node2D
 					var currentField = (Field)GD.Load<PackedScene>("res://scenes/Field.tscn").Instantiate();
 					currentField.tileType = tileType.Value;
 					currentField.Position = new Vector2(x * fieldSizePixels, y * fieldSizePixels);
-					
 					// Add tile to the tile map and to the list of tiles
 					tileMap[y, x] = currentField;
 					tiles.Add(currentField);

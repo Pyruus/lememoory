@@ -24,10 +24,19 @@ public partial class Board : Node2D
 			Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
 			Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
 			Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
-			Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL
+			Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
+				Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
+				Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
+				Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
+				Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
+					Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
+				
+
+
 		};
 		var fieldSizePixels = 128;
-		var fieldsInRow = 4;
+		var fieldsInRow = 13;
+		var fieldsInColumn = 7;
 		var index = 0;
 		 foreach (var item in outerFields)
 		{
@@ -40,17 +49,17 @@ public partial class Board : Node2D
 		{
 			position = new Vector2(index * fieldSizePixels, 0);
 		}
-		else if (index < fieldsInRow * 2)
+		else if (index < fieldsInRow + fieldsInColumn - 1)
 		{
-			position = new Vector2((fieldsInRow - 1) * fieldSizePixels, (index - fieldsInRow) * fieldSizePixels);
+			position = new Vector2((fieldsInRow - 1) * fieldSizePixels, (index - fieldsInRow + 1) * fieldSizePixels);
 		}
-		else if (index < fieldsInRow * 3)
+		else if (index < fieldsInRow * 2 + fieldsInColumn -2)
 		{
-			position = new Vector2((fieldsInRow * 3 - 1 - index) * fieldSizePixels, (fieldsInRow - 1) * fieldSizePixels);
+			position = new Vector2(( fieldsInRow * 2 +  fieldsInColumn -3 - index) * fieldSizePixels, (fieldsInColumn - 1) * fieldSizePixels );
 		}
 		else
 		{
-			position = new Vector2(0, (fieldsInRow * 4 - 1 - index) * fieldSizePixels);
+			position = new Vector2(0, (fieldsInRow * 2 + fieldsInColumn +3 - index) * fieldSizePixels);
 		}
 
 		currentField.Position = position;

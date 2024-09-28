@@ -1,6 +1,6 @@
 using Godot;
 using System;
-
+using System.Collections.Generic;
 public partial class Field : Area2D
 {
 	public enum TileType { QUESTION, NORMAL, SPECIAL, PENALTY }
@@ -23,7 +23,6 @@ public partial class Field : Area2D
 	
 	private void setTileTexture() {
 		var sprite = GetNode<Sprite2D>("Sprite2D");
-		var rect = GetNode<ColorRect>("ColorRect");
 
 		
 		switch (tileType)

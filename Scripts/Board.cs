@@ -14,6 +14,8 @@ public partial class Board : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		var currentPawn = GetNode<Pawn>("Pawn");
+		Globals.Instance.CurrentPlayerPawn = currentPawn;
 		rollButton = GetNode<Button>("RollButton");
 		rollButton.Pressed += OnRollButtonPressed;
 		

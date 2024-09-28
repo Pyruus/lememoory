@@ -10,9 +10,9 @@ public partial class EventFactory
 		var randomNumber = rnd.Next(10);
 		switch(randomNumber) {
 			case 0:
-				return new MoveToCornerEvent(Globals.Instance.CurrentPlayer);
+				return new MoveToCornerEvent(Globals.Instance.CurrentPlayerPawn);
 			default:
-				return new MoveToCornerEvent(Globals.Instance.CurrentPlayer);
+				return new MoveToCornerEvent(Globals.Instance.CurrentPlayerPawn);
 		}
 	}
 }

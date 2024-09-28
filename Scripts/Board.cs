@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public partial class Board : Node2D
 {
 	private List<Field> tiles = new List<Field>();
+	private Pawn currentPlayer;
+	private Dice dice;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -102,7 +104,10 @@ public partial class Board : Node2D
 			currentSpecialFieldMain.Position = new Vector2(specialFieldsIndexes[i, 0] * fieldSizePixels, specialFieldsIndexes[i, 1] * fieldSizePixels);
 			AddChild(currentSpecialFieldMain);
 		}
-		
-		
+
+		dice = (Dice)GD.Load<PackedScene>("res://Objects/dice.tscn").Instantiate();
+		dice.Position = new Vector2(3 * fieldSizePixels, 3 * fieldSizePixels);
+		dice.SetBoard(this);
+		AddChild(dice);
 	}
 }

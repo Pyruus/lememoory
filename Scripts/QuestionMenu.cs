@@ -34,6 +34,7 @@ public partial class QuestionMenu : Control
 		feedbackLabel.Hide();
 		closeButton.Hide();
 		LoadQuestions();
+		Hide();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

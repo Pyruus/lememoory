@@ -31,6 +31,7 @@ public partial class Board : Node2D
 		questionModal = (QuestionMenu)GD.Load<PackedScene>("res://Scenes/question_menu.tscn").Instantiate();
 		questionModal.Position = new Vector2(0,0);
 		questionModal.Connect("AnsweredQuestion", new Callable(this, nameof(OnQuestionAnswered)));
+		AddChild(questionModal);
 		
 		dice = (Dice)GD.Load<PackedScene>("res://Objects/dice.tscn").Instantiate();
 		dice.Position = new Vector2(4.5f * fieldSizePixels, 3.5f * fieldSizePixels);
@@ -127,6 +128,7 @@ public partial class Board : Node2D
 		{
 			field.Modulate = new Color("ffffff");
 			field.Clickable = false;
+			field.Clicked -= MoveToField;
 		}
 
 		rollButton.Disabled = false;
@@ -164,7 +166,6 @@ public partial class Board : Node2D
 	
 	public void askQuestion() {
 		GD.Print("ASKED");
-		AddChild(questionModal);
 		questionModal.ShowRandomQuestion();
 		
 	}

@@ -5,6 +5,7 @@ public partial class Dice : Control
 {
 	private Label resultLabel;
 	private Button rollButton;
+	private Board currentBoard;
 	
 	public int LatestResult;
 	
@@ -23,12 +24,27 @@ public partial class Dice : Control
 	public override void _Process(double delta)
 	{
 	}
+
+	public void ActivateRoll()
+	{
+		rollButton.Disabled = false;
+	}
+	public void DeactivateRoll()
+	{
+		rollButton.Disabled = true;
+	}
+
+	public void SetBoard(Board board)
+	{
+		currentBoard = board;
+	}
 	
 	private void OnRollButtonPressed()
 	{
 		var result = random.Next(1, 7);
 		resultLabel.Text = result.ToString();
 		LatestResult = result;
+		
 	}
 	
 }

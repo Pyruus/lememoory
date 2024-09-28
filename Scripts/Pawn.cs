@@ -7,7 +7,7 @@ public partial class Pawn : Area2D
 	public float Speed = 200.0f; // Adjust this to change movement speed
 	
 	[Export]
-	public Area2D StartingField = null;
+	public Field StartingField = null;
 
 	private Vector2 targetPosition;
 	private bool isMoving = false;

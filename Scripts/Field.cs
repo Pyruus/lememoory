@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public partial class Field : Area2D
 {
 	[Signal]
-	public delegate void ClickedEventHandler();
+	public delegate void ClickedEventHandler(Field field);
 
 	private CollisionShape2D collisionShape;
 
@@ -13,7 +13,7 @@ public partial class Field : Area2D
 
 	public List<Field> neighbours = new List<Field>();
 	public Field previouslyVisitedField = null;
-	public bool Clickable = true;
+	public bool Clickable = false;
 	
 	
 
@@ -26,6 +26,8 @@ public partial class Field : Area2D
 
 		// Connect the input event signal
 		Connect("input_event", new Callable(this, nameof(OnInputEvent)));
+		Connect("mouse_entered", new Callable(this, nameof(OnMouseEntered)));
+		Connect("mouse_exited", new Callable(this, nameof(OnMouseExited)));
 	}
 
 
@@ -33,11 +35,11 @@ public partial class Field : Area2D
 	{
 		if (@event is InputEventMouseButton mouseEvent &&
 			mouseEvent.ButtonIndex == MouseButton.Left &&
-			mouseEvent.Pressed)
+			mouseEvent.Pressed &&
+			Clickable)
 		{
 			GD.Print($"Clicked on {Name}!");
-			EmitSignal(SignalName.Clicked);
-			onEnter(); // Call onEnter when clicked
+			EmitSignal(SignalName.Clicked, this);
 		}
 	}
 	
@@ -102,5 +104,25 @@ public partial class Field : Area2D
 	
 	public void getEvent() {
 		EventFactory.getEvent().resolve();
+	}
+	
+	private void OnMouseEntered()
+	{
+		if (Clickable)
+		{
+			Input.SetDefaultCursorShape(Input.CursorShape.PointingHand);	
+		}
+		else
+		{
+			Input.SetDefaultCursorShape();
+		}
+	}
+
+	private void OnMouseExited()
+	{
+		if (Input.GetCurrentCursorShape() == Input.CursorShape.PointingHand)
+		{
+			Input.SetDefaultCursorShape();
+		}
 	}
 }

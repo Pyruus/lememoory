@@ -10,6 +10,8 @@ public partial class Board : Node2D
 	private Dice dice;
 	private Button rollButton;
 	
+	private int fieldSizePixels = 128;
+	
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -20,7 +22,8 @@ public partial class Board : Node2D
 		CreateBoard();
 		
 		currentPlayer = GetNode<Pawn>("Pawn");
-		currentPlayer.Position = tiles.FirstOrDefault().Position;
+		currentPlayer.Position = new Vector2(tiles.FirstOrDefault().Position.X + fieldSizePixels/2, tiles.FirstOrDefault().Position.Y + fieldSizePixels/2);;
+		currentPlayer.CurrnetField = tiles.FirstOrDefault();
 	}
 
 	private void CreateBoard()
@@ -35,8 +38,7 @@ public partial class Board : Node2D
 							{ Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL },
 
 		};
-
-		var fieldSizePixels = 128;
+		
 		Field[,] tileMap = new Field[boardLayout.GetLength(0), boardLayout.GetLength(1)];
 
 		// Iterate over the 2D board layout and create valid tiles
@@ -52,6 +54,7 @@ public partial class Board : Node2D
 					var currentField = (Field)GD.Load<PackedScene>("res://scenes/Field.tscn").Instantiate();
 					currentField.tileType = tileType.Value;
 					currentField.Position = new Vector2(x * fieldSizePixels, y * fieldSizePixels);
+					
 					// Add tile to the tile map and to the list of tiles
 					tileMap[y, x] = currentField;
 					tiles.Add(currentField);
@@ -92,29 +95,31 @@ public partial class Board : Node2D
 
 	private void OnRollButtonPressed()
 	{
-		foreach (var field in tiles)
-		{
-			field.Modulate = new Color("ffffff");
-			field.Clickable = false;
-		}
 		var roll = dice.OnRollButtonPressed();
 		rollButton.Disabled = true;
-		var currentField = tiles.FirstOrDefault();
+		var currentField = currentPlayer.CurrnetField;
 		var result = GetAvailableFields(roll, currentField);
 		foreach (var field in result)
 		{
 			field.Modulate = new Color("85aebe");
 			field.Clickable = true;
-			field.InputPickable = true;
-			field.InputEvent += MoveToField;
+			field.Clicked += MoveToField;
 		}
 	}
 
-	private void MoveToField(Node node, InputEvent @event, long shapeIdx)
+	private void MoveToField(Field newField)
 	{
+		currentPlayer.Position = new Vector2(newField.Position.X + fieldSizePixels/2, newField.Position.Y + fieldSizePixels/2);
+		currentPlayer.CurrnetField = newField;
+		
+		foreach (var field in tiles)
+		{
+			field.Modulate = new Color("ffffff");
+			field.Clickable = false;
+		}
 
-				GD.Print($"Clicked on {node}!");
-
+		rollButton.Disabled = false;
+		newField.onEnter();
 	}
 
 	private List<Field> GetAvailableFields(int roll, Field startField)

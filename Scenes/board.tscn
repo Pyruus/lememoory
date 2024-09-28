@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cykbeye148vau"]
+[gd_scene load_steps=3 format=3 uid="uid://cykbeye148vau"]
 
 [ext_resource type="PackedScene" uid="uid://h1nt8pj5k5wa" path="res://Objects/pawn.tscn" id="1_08rqc"]
 [ext_resource type="Script" path="res://Scripts/Board.cs" id="1_dht66"]
-[ext_resource type="PackedScene" uid="uid://dxiij4l1s6q1j" path="res://Scenes/field.tscn" id="3_7y8sc"]
 
 [node name="Board" type="Node2D"]
 script = ExtResource("1_dht66")
@@ -17,6 +16,3 @@ offset_right = 174.0
 offset_bottom = 139.0
 mouse_default_cursor_shape = 2
 text = "Roll"
-
-[node name="Field" parent="." instance=ExtResource("3_7y8sc")]
-position = Vector2(213, 283)

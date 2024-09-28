@@ -6,6 +6,10 @@ public partial class Field : Area2D
 	public enum TileType { QUESTION, NORMAL, SPECIAL, PENALTY }
 	public TileType tileType = TileType.NORMAL;
 	
+	public Field previousField;
+	public Field nextField;
+	public Field specialField;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

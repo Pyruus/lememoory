@@ -12,98 +12,67 @@ public partial class Board : Node2D
 		CreateBoard();
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
-	   
 	private void CreateBoard()
 	{
-	   var outerFields = new Field.TileType[]
-		{
-			Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
-			Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
-			Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
-			Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
-				Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
-				Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
-				Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
-				Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
-					Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
-				
-
+		var boardLayout = new Field.TileType?[,] {
+			{ Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL },
+			{ Field.TileType.NORMAL, null, Field.TileType.NORMAL, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.NORMAL, null, Field.TileType.NORMAL },
+			{ Field.TileType.NORMAL,  Field.TileType.NORMAL, Field.TileType.SPECIAL, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.SPECIAL, Field.TileType.NORMAL, Field.TileType.NORMAL },
+			{ Field.TileType.NORMAL, null, null, null, null, null, null, null, null, null, null, null, Field.TileType.NORMAL },
+			{ Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.SPECIAL, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.SPECIAL, Field.TileType.NORMAL, Field.TileType.NORMAL },
+				{ Field.TileType.NORMAL, null, Field.TileType.NORMAL, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.NORMAL, null, Field.TileType.NORMAL },
+							{ Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL },
 
 		};
+
 		var fieldSizePixels = 128;
-		var fieldsInRow = 13;
-		var fieldsInColumn = 7;
-		var index = 0;
 		Field previousField = null;
-		 foreach (var item in outerFields)
-		{
-		var currentField = (Field)GD.Load<PackedScene>("res://scenes/Field.tscn").Instantiate();
-		currentField.tileType = item;
+		Field[,] tileMap = new Field[boardLayout.GetLength(0), boardLayout.GetLength(1)];
 
-		Vector2 position;
-
-		if (index < fieldsInRow)
+		// Iterate over the 2D board layout and create valid tiles
+		for (int y = 0; y < boardLayout.GetLength(0); y++)
 		{
-			position = new Vector2(index * fieldSizePixels, 0);
-		}
-		else if (index < fieldsInRow + fieldsInColumn - 1)
-		{
-			position = new Vector2((fieldsInRow - 1) * fieldSizePixels, (index - fieldsInRow + 1) * fieldSizePixels);
-		}
-		else if (index < fieldsInRow * 2 + fieldsInColumn -2)
-		{
-			position = new Vector2(( fieldsInRow * 2 +  fieldsInColumn -3 - index) * fieldSizePixels, (fieldsInColumn - 1) * fieldSizePixels );
-		}
-		else
-		{
-			position = new Vector2(0, (fieldsInRow * 2 + fieldsInColumn +3 - index) * fieldSizePixels);
-		}
-
-		currentField.Position = position;
-		currentField.neighbours.Add(previousField);
-		AddChild(currentField);
-		tiles.Add(currentField);
-		index++;
-		if(previousField != null) {
-			previousField.neighbours.Add(currentField);
-		}
-		previousField = currentField;
-	}
-	
-		tiles[0].neighbours.Add(previousField);
-		tiles[tiles.Count -1 ].neighbours.Add(tiles[0]);
-	
-		int[,] specialPathsIndexPositions = {
-			{2, 1}, {1,2}, {fieldsInRow - 3, 1}, {fieldsInRow -2, 2 }, {1, fieldsInColumn - 3}, {2, fieldsInColumn-2}, {fieldsInRow - 3, fieldsInColumn - 2}, {fieldsInRow -2, fieldsInColumn -3},
-		 {(int)Math.Floor(fieldsInRow/2f), 1},
-		 {(int)Math.Floor(fieldsInRow/2f), 2},
-		 {(int)Math.Floor(fieldsInRow/2f), 4},
-		 {(int)Math.Floor(fieldsInRow/2f), 5},
-		};
-		
-		for(int i = 0; i< 12; i++){
-		 
-			var currentSpecialField = (Field)GD.Load<PackedScene>("res://scenes/Field.tscn").Instantiate();
-		currentSpecialField.tileType = Field.TileType.NORMAL;
-		currentSpecialField.Position = new Vector2(specialPathsIndexPositions[i, 0] * fieldSizePixels, specialPathsIndexPositions[i, 1] * fieldSizePixels);
-		AddChild(currentSpecialField);
-		}
-		
-		
-		
-		int[,] specialFieldsIndexes = {
-			{2, 2}, {fieldsInRow - 3, 2}, {2, fieldsInColumn - 3},  {fieldsInRow -3, fieldsInColumn -3},
-		};
+			for (int x = 0; x < boardLayout.GetLength(1); x++)
+			{
+				var tileType = boardLayout[y, x];
 				
-		for(int i = 0; i< 4; i++){
-			var currentSpecialFieldMain = (Field)GD.Load<PackedScene>("res://scenes/Field.tscn").Instantiate();
-			currentSpecialFieldMain.tileType = Field.TileType.SPECIAL;
-			currentSpecialFieldMain.Position = new Vector2(specialFieldsIndexes[i, 0] * fieldSizePixels, specialFieldsIndexes[i, 1] * fieldSizePixels);
-			AddChild(currentSpecialFieldMain);
+				if (tileType != null)
+				{
+					// Instantiate and set tile properties
+					var currentField = (Field)GD.Load<PackedScene>("res://scenes/Field.tscn").Instantiate();
+					currentField.tileType = tileType.Value;
+					currentField.Position = new Vector2(x * fieldSizePixels, y * fieldSizePixels);
+					
+					// Add tile to the tile map and to the list of tiles
+					tileMap[y, x] = currentField;
+					tiles.Add(currentField);
+					AddChild(currentField);
+				}
+			}
+		}
+
+		// Now set neighbours for each valid tile
+		for (int y = 0; y < boardLayout.GetLength(0); y++)
+		{
+			for (int x = 0; x < boardLayout.GetLength(1); x++)
+			{
+				if (tileMap[y, x] != null)
+				{
+					Field currentField = tileMap[y, x];
+					
+					// Check neighbours (up, down, left, right)
+					if (y > 0 && tileMap[y - 1, x] != null)  // Up
+						currentField.neighbours.Add(tileMap[y - 1, x]);
+					if (y < boardLayout.GetLength(0) - 1 && tileMap[y + 1, x] != null)  // Down
+						currentField.neighbours.Add(tileMap[y + 1, x]);
+					if (x > 0 && tileMap[y, x - 1] != null)  // Left
+						currentField.neighbours.Add(tileMap[y, x - 1]);
+					if (x < boardLayout.GetLength(1) - 1 && tileMap[y, x + 1] != null)  // Right
+						currentField.neighbours.Add(tileMap[y, x + 1]);
+						
+					GD.Print(currentField.neighbours.Count);
+				}
+			}
 		}
 	}
 }

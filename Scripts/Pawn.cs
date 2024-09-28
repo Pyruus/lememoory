@@ -9,6 +9,8 @@ public partial class Pawn : Area2D
 	[Export]
 	public Field StartingField = null;
 
+	public Field CurrnetField;
+
 	private Vector2 targetPosition;
 	private bool isMoving = false;
 

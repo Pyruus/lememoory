@@ -1,10 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxiij4l1s6q1j"]
+[gd_scene load_steps=4 format=3 uid="uid://dxiij4l1s6q1j"]
 
 [ext_resource type="Script" path="res://Scripts/Field.cs" id="1_kf8wo"]
+[ext_resource type="Texture2D" uid="uid://o1c5iwp4r4g8" path="res://Assets/pole_1.png" id="2_edt8d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_beur3"]
+size = Vector2(58, 62)
 
 [node name="Field" type="Area2D"]
 script = ExtResource("1_kf8wo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(182, 194)
+scale = Vector2(0.938, 1)
+texture = ExtResource("2_edt8d")
 centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+top_level = true
+position = Vector2(30, 32)
+shape = SubResource("RectangleShape2D_beur3")

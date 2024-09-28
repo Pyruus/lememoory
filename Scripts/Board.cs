@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class Board : Node2D
 {
@@ -17,6 +18,9 @@ public partial class Board : Node2D
 		rollButton.Pressed += OnRollButtonPressed;
 		
 		CreateBoard();
+		
+		currentPlayer = GetNode<Pawn>("Pawn");
+		currentPlayer.Position = tiles.FirstOrDefault().Position;
 	}
 
 	private void CreateBoard()
@@ -84,13 +88,64 @@ public partial class Board : Node2D
 
 		dice = (Dice)GD.Load<PackedScene>("res://Objects/dice.tscn").Instantiate();
 		dice.Position = new Vector2(3 * fieldSizePixels, 3 * fieldSizePixels);
-		rollButton.Position = new Vector2(3 * fieldSizePixels - rollButton.GetSize()[1]/2, 3 * fieldSizePixels + 20);
+		rollButton.Position = new Vector2(3 * fieldSizePixels - rollButton.GetSize()[1]/2, 3 * fieldSizePixels + 50);
 		AddChild(dice);
 	}
 
 	private void OnRollButtonPressed()
 	{
+		foreach (var field in tiles)
+		{
+			field.Modulate = new Color("ffffff");
+			field.Clickable = false;
+		}
 		var roll = dice.OnRollButtonPressed();
-		GD.Print(roll);
+		rollButton.Disabled = true;
+		var currentField = tiles.FirstOrDefault();
+		var result = GetAvailableFields(roll, currentField);
+		foreach (var field in result)
+		{
+			field.Modulate = new Color("85aebe");
+			field.Clickable = true;
+			field.InputPickable = true;
+			field.InputEvent += MoveToField;
+		}
 	}
+
+	private void MoveToField(Node node, InputEvent @event, long shapeIdx)
+	{
+
+				GD.Print($"Clicked on {node}!");
+
+	}
+
+	private List<Field> GetAvailableFields(int roll, Field startField)
+	{
+		var result = new List<Field>();
+		DFS(startField, roll, new List<Field> { startField }, result);
+		return result.Distinct().ToList();
+	}
+	
+	private static void DFS(Field currentField, int remainingSteps, List<Field> path, List<Field> result)
+	{
+		if (remainingSteps == 0)
+		{
+			result.Add(currentField);
+			return;
+		}
+
+		foreach (var neighbour in currentField.neighbours)
+		{
+			if (neighbour != currentField.previouslyVisitedField)
+			{
+				var newPath = new List<Field>(path) { neighbour };
+				var previousLastVisited = neighbour.previouslyVisitedField;
+				
+				neighbour.previouslyVisitedField = currentField;
+				DFS(neighbour, remainingSteps - 1, newPath, result);
+				neighbour.previouslyVisitedField = previousLastVisited;
+			}
+		}
+	}
+	
 }

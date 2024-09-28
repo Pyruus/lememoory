@@ -65,6 +65,20 @@ public partial class Board : Node2D
 		currentField.Position = position;
 		AddChild(currentField);
 		index++;
+		
+			
 	}
+	
+	
+	
+		int[,] specialPathsIndexPositions = {{2, 1}, {1,2}, {fieldsInRow - 3, 1}, {fieldsInRow -2, 2 }, {1, fieldsInColumn - 3}, {2, fieldsInColumn-2}, {fieldsInRow - 3, fieldsInColumn - 2}, {fieldsInRow -2, fieldsInColumn -3}};
+		
+		for(int i = 0; i< 8; i++){
+		 
+			var currentSpecialField = (Field)GD.Load<PackedScene>("res://scenes/Field.tscn").Instantiate();
+		currentSpecialField.tileType = Field.TileType.NORMAL;
+		currentSpecialField.Position = new Vector2(specialPathsIndexPositions[i, 0] * fieldSizePixels, specialPathsIndexPositions[i, 1] * fieldSizePixels);
+		AddChild(currentSpecialField);
+		}
 	}
 }

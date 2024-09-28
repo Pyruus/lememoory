@@ -12,7 +12,7 @@ public partial class Board : Node2D
 	private QuestionMenu questionModal;
 	
 	private int fieldSizePixels = 128;
-	
+	private Texture2D backpackSprite;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -22,6 +22,7 @@ public partial class Board : Node2D
 		rollButton = GetNode<Button>("RollButton");
 		rollButton.Pressed += OnRollButtonPressed;
 		
+		backpackSprite = (Texture2D)GD.Load("res://Assets/plecak.png");
 		CreateBoard();
 		
 		currentPlayer = GetNode<Pawn>("Pawn");
@@ -38,12 +39,13 @@ public partial class Board : Node2D
 	}
 	
 	public override void _Draw() {
-		int index = 0;
-		
+		int index = 1;
+		int rowsCount = 7;
+		DrawTexture(backpackSprite, new Vector2(32, rowsCount * Globals.FieldSizePixels + 32));
 		foreach(var item in Globals.Instance.CurrentPlayerPawn.items) {
 			GD.Print(item);
-			int rowsCount = 7;
-			DrawTexture(item.sprite, new Vector2(index * Globals.FieldSizePixels, rowsCount * Globals.FieldSizePixels + 16));
+		
+			DrawTexture(item.sprite, new Vector2(index * Globals.FieldSizePixels, rowsCount * Globals.FieldSizePixels + 32));
 			index++;
 		}
 	}

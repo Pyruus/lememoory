@@ -90,7 +90,7 @@ public partial class Board : Node2D
 		rollButton.Position = new Vector2(3 * fieldSizePixels - rollButton.GetSize()[1]/2, 3 * fieldSizePixels + 50);
 		AddChild(dice);
 		
-		askQuestion();
+		Globals.Instance.Tiles = tiles;
 	}
 
 	private void OnRollButtonPressed()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1l84mrw0uref"]
+[gd_scene load_steps=4 format=3 uid="uid://d1l84mrw0uref"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.cs" id="1_jjymy"]
+[ext_resource type="Script" path="res://Scripts/CategoriesList.cs" id="2_lp37s"]
 
 [sub_resource type="Theme" id="Theme_7pjk6"]
 
@@ -22,6 +23,10 @@ alignment = 1
 layout_mode = 2
 theme = SubResource("Theme_7pjk6")
 text = "Start"
+
+[node name="CategoriesList" type="MenuButton" parent="VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_lp37s")
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2

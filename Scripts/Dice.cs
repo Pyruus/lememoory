@@ -6,9 +6,9 @@ public partial class Dice : Control
 	private Label resultLabel;
 	private Button rollButton;
 	
-	public int latestResult;
+	public int LatestResult;
 	
-	private Random random = new Random();
+	private readonly Random random = new Random();
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -28,7 +28,7 @@ public partial class Dice : Control
 	{
 		var result = random.Next(1, 7);
 		resultLabel.Text = result.ToString();
-		latestResult = result;
+		LatestResult = result;
 	}
 	
 }

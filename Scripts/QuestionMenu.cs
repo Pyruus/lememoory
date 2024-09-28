@@ -76,6 +76,7 @@ public partial class QuestionMenu : Control
 
 		var randomQuestion = questions[random.Next(questions.Count)];
 		ShowQuestion(randomQuestion.Question, randomQuestion.Answers.ToArray(), randomQuestion.CorrectIndex);
+		questions.Remove(randomQuestion);
 	}
 	
 	public void ShowQuestion(string question, string[] answers, int correctIndex)

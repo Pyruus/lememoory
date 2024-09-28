@@ -6,6 +6,10 @@ public partial class MainMenu : Control
 	private Button startButton;
 	private Button quitButton;
 	
+	private PackedScene questionMenuScene;
+	private QuestionMenu questionMenu;
+
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -14,6 +18,9 @@ public partial class MainMenu : Control
 
 		startButton.Pressed += OnStartButtonPressed;
 		quitButton.Pressed += OnQuitButtonPressed;
+		
+		/*questionMenuScene = ResourceLoader.Load<PackedScene>("res://Scenes/question_menu.tscn");
+		questionMenu = questionMenuScene.Instantiate<QuestionMenu>();*/
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,6 +31,9 @@ public partial class MainMenu : Control
 	private void OnStartButtonPressed()
 	{
 		GetTree().ChangeSceneToFile("res://Scenes/board.tscn");
+		/*AddChild(questionMenu);
+		
+		questionMenu.ShowRandomQuestion();*/
 	}
 	
 	private void OnQuitButtonPressed()

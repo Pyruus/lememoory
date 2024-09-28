@@ -70,14 +70,11 @@ public partial class Board : Node2D
 		if(previousField != null) {
 			previousField.nextField = currentField;
 		}
-		previousField = currentField;	
-		GD.Print(currentField.previousField);
-		
+		previousField = currentField;
 	}
 	
 		tiles[0].previousField = previousField;
-	
-	
+		tiles[tiles.Count -1 ].nextField = tiles[0];
 	
 		int[,] specialPathsIndexPositions = {
 			{2, 1}, {1,2}, {fieldsInRow - 3, 1}, {fieldsInRow -2, 2 }, {1, fieldsInColumn - 3}, {2, fieldsInColumn-2}, {fieldsInRow - 3, fieldsInColumn - 2}, {fieldsInRow -2, fieldsInColumn -3},

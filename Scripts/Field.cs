@@ -14,7 +14,7 @@ public partial class Field : Area2D
 	public List<Field> neighbours = new List<Field>();
 	public Field previouslyVisitedField = null;
 	public bool Clickable = true;
-	
+	public Board board;
 	
 
 	public override void _Ready()
@@ -48,7 +48,7 @@ public partial class Field : Area2D
 		switch (tileType)
 		{
 			case TileType.QUESTION:
-				sprite.Texture = (Texture2D)GD.Load("res://textures/start_tile.png");
+				sprite.Texture = (Texture2D)GD.Load("res://Assets/dzewo.png");
 				break;
 			case TileType.NORMAL:
 				sprite.Texture = (Texture2D)GD.Load("res://Assets/pole_1.png");
@@ -57,7 +57,7 @@ public partial class Field : Area2D
 				sprite.Texture = (Texture2D)GD.Load("res://Assets/pole_magia.png");
 				break;
 			case TileType.EVENT:
-				sprite.Texture = (Texture2D)GD.Load("res://Assets/pole_magia.png");
+				sprite.Texture = (Texture2D)GD.Load("res://Assets/pustynia_skalki.png");
 				break;
 			case TileType.FINAL:
 				sprite.Texture = (Texture2D)GD.Load("res://Assets/pole_magia.png");
@@ -88,8 +88,7 @@ public partial class Field : Area2D
 			}
 	}
 	public void askQuestion() {
-		
-		
+		board.askQuestion();
 	}
 	
 	public void getGoalPiece() {

@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://rlvvrdd0wcut"]
+[gd_scene load_steps=3 format=3 uid="uid://dx70fkdflfqia"]
 
 [ext_resource type="Script" path="res://Scripts/QuestionMenu.cs" id="1_te7ip"]
-[ext_resource type="PackedScene" uid="uid://dkyqedma2lujv" path="res://Scenes/answer_button.tscn" id="2_wd7hu"]
+[ext_resource type="PackedScene" path="res://Scenes/answer_button.tscn" id="2_wd7hu"]
 
 [node name="QuestionMenu" type="Control"]
+z_index = 100
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

@@ -18,7 +18,7 @@ public class MoveToCornerEvent:Event {
 	}
 	
 	public override void resolve() {
-		this.currentPlayerPawn.Position = new Vector2(0,0);
+		this.currentPlayerPawn.Position = new Vector2(Globals.Instance.Tiles[0].Position.X + Globals.FieldSizePixels/2, Globals.Instance.Tiles[0].Position.Y + Globals.FieldSizePixels/2);
 		this.currentPlayerPawn.CurrentField = Globals.Instance.Tiles[0];
 	}
 }
@@ -44,4 +44,37 @@ public class TrapGetEvent: Event {
 		//todo add item to current player backpack
 	}
 	
+}
+
+public class AdditionalRoundEvent: Event {
+	public string title = "Electric Scooter";
+	public string modalMessage = "You find electric scooter. It is so fast, that you get an additional play.";
+		Pawn currentPlayerPawn;
+	public AdditionalRoundEvent(Pawn currentPlayer) {
+		this.currentPlayerPawn = currentPlayer;
+	}
+	public override void resolve() {
+		
+		// Globals.Instance.NextPlayer = this.currentPlayerPawn;
+	}
+}
+
+
+public class MoveToRandomFieldEvent: Event {
+	public string title = "Quantum teleportation portal";
+	public string modalMessage = "You come across a strange device. You press the big red button and milliseconds later you find yourself in some strange place.";
+		Pawn currentPlayerPawn;
+	public MoveToRandomFieldEvent(Pawn currentPlayer) {
+		this.currentPlayerPawn = currentPlayer;
+	}
+	public override void resolve() {
+		
+		var tilesCount = Globals.Instance.Tiles.Count;
+		Random rnd = new Random();
+		
+		var randomNumber = rnd.Next(tilesCount);
+		
+		this.currentPlayerPawn.Position = new Vector2(Globals.Instance.Tiles[randomNumber].Position.X + Globals.FieldSizePixels/2, Globals.Instance.Tiles[randomNumber].Position.Y + Globals.FieldSizePixels/2);
+		this.currentPlayerPawn.CurrentField = Globals.Instance.Tiles[randomNumber];
+	}
 }

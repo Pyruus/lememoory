@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Pawn : Area2D
 {
@@ -10,6 +11,9 @@ public partial class Pawn : Area2D
 
 	private Vector2 targetPosition;
 	private bool isMoving = false;
+	public List<Item> items = new List<Item>();
+	
+	public bool skipsNextTurn = false;
 
 	public override void _Ready()
 	{
@@ -37,4 +41,5 @@ public partial class Pawn : Area2D
 	{
 		
 	}
+	
 }

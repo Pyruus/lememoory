@@ -15,6 +15,7 @@ public partial class Field : Area2D
 	public Field previouslyVisitedField = null;
 	public bool Clickable = true;
 	public Board board;
+	public Placable placable;
 	
 
 	public override void _Ready()

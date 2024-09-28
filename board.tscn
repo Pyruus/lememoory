@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cykbeye148vau"]
+
+[ext_resource type="PackedScene" uid="uid://h1nt8pj5k5wa" path="res://pawn.tscn" id="1_08rqc"]
+
+[node name="Board" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1080.0
+offset_bottom = 720.0
+
+[node name="Pawn" parent="." instance=ExtResource("1_08rqc")]
+position = Vector2(202, 495)

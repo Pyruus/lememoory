@@ -26,7 +26,7 @@ public partial class Board : Node2D
 			Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,
 			Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL
 		};
-		var fieldSizePixels = 64;
+		var fieldSizePixels = 128;
 		var fieldsInRow = 4;
 		var index = 0;
 		 foreach (var item in outerFields)

@@ -9,6 +9,7 @@ public partial class Field : Area2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		setTileTexture();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,15 +18,17 @@ public partial class Field : Area2D
 	}
 	
 	private void setTileTexture() {
-		var sprite = GetNode<Sprite2D>("Sprite");
+		var sprite = GetNode<Sprite2D>("Sprite2D");
+		var rect = GetNode<ColorRect>("ColorRect");
 
+		
 		switch (tileType)
 		{
 			case TileType.QUESTION:
 				sprite.Texture = (Texture2D)GD.Load("res://textures/start_tile.png");
 				break;
 			case TileType.NORMAL:
-				sprite.Texture = (Texture2D)GD.Load("res://textures/normal_tile.png");
+				sprite.Texture = (Texture2D)GD.Load("res://Assets/pole_1.png");
 				break;
 			case TileType.BONUS:
 				sprite.Texture = (Texture2D)GD.Load("res://textures/bonus_tile.png");
@@ -34,5 +37,9 @@ public partial class Field : Area2D
 				sprite.Texture = (Texture2D)GD.Load("res://textures/penalty_tile.png");
 				break;
 		}
+		
+		float scaleX = 128.0f / sprite.Texture.GetWidth();
+		float scaleY = 128.0f / sprite.Texture.GetHeight();
+		sprite.Scale = new Vector2(scaleX, scaleY);
 	}
 }

@@ -27,6 +27,10 @@ public partial class Board : Node2D
 		currentPlayer = GetNode<Pawn>("Pawn");
 		currentPlayer.Position = new Vector2(tiles.FirstOrDefault().Position.X + fieldSizePixels/2, tiles.FirstOrDefault().Position.Y + fieldSizePixels/2);;
 		currentPlayer.CurrentField = tiles.FirstOrDefault();
+		
+		questionModal = (QuestionMenu)GD.Load<PackedScene>("res://Scenes/question_menu.tscn").Instantiate();
+		questionModal.Position = new Vector2(0,0);
+		questionModal.Connect("AnsweredQuestion", new Callable(this, nameof(OnQuestionAnswered)));
 	}
 
 	private void CreateBoard()
@@ -159,11 +163,14 @@ public partial class Board : Node2D
 	
 	public void askQuestion() {
 		GD.Print("ASKED");
-		questionModal = (QuestionMenu)GD.Load<PackedScene>("res://Scenes/question_menu.tscn").Instantiate();
-		questionModal.Position = new Vector2(0,0);
 		AddChild(questionModal);
 		questionModal.ShowRandomQuestion();
 		
+	}
+
+	private void OnQuestionAnswered(bool correctAnswer)
+	{
+		GD.Print($"Question answered {correctAnswer}");
 	}
 	
 }

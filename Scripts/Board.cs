@@ -38,6 +38,7 @@ public partial class Board : Node2D
 		var fieldsInRow = 13;
 		var fieldsInColumn = 7;
 		var index = 0;
+		Field previousField = null;
 		 foreach (var item in outerFields)
 		{
 		var currentField = (Field)GD.Load<PackedScene>("res://scenes/Field.tscn").Instantiate();
@@ -63,11 +64,18 @@ public partial class Board : Node2D
 		}
 
 		currentField.Position = position;
+		currentField.previousField = previousField;
 		AddChild(currentField);
 		index++;
+		if(previousField != null) {
+			previousField.nextField = currentField;
+		}
+		previousField = currentField;	
+		GD.Print(currentField.previousField);
 		
-			
 	}
+	
+		tiles[0].previousField = previousField;
 	
 	
 	

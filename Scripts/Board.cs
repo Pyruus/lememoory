@@ -25,7 +25,7 @@ public partial class Board : Node2D
 		CreateBoard();
 		
 		currentPlayer = GetNode<Pawn>("Pawn");
-		currentPlayer.Position = new Vector2(tiles.FirstOrDefault().Position.X + fieldSizePixels/2, tiles.FirstOrDefault().Position.Y + fieldSizePixels/2);;
+		currentPlayer.Position = new Vector2(tiles.FirstOrDefault().Position.X + fieldSizePixels/2, tiles.FirstOrDefault().Position.Y + fieldSizePixels/2);
 		currentPlayer.CurrentField = tiles.FirstOrDefault();
 	}
 

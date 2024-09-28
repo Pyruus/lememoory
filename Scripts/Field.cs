@@ -62,7 +62,7 @@ public partial class Field : Area2D
 				sprite.Texture = (Texture2D)GD.Load("res://Assets/pustynia_skalki.png");
 				break;
 			case TileType.FINAL:
-				sprite.Texture = (Texture2D)GD.Load("res://Assets/pole_magia.png");
+				sprite.Texture = (Texture2D)GD.Load("res://Assets/final.png");
 				break;
 		}
 		

@@ -7,16 +7,18 @@ public partial class QuestionMenu : Control
 {
 	[Export]
 	public PackedScene AnswerButtonScene { get; set; }
+	[Signal]
+	public delegate void AnsweredQuestionEventHandler(bool correct);
 
 	private Label questionLabel;
 	private VBoxContainer answerContainer;
 	private Label feedbackLabel;
 	private Button closeButton;
 
-	private List<Button> answerButtons = new List<Button>();
+	private List<Button> answerButtons = new();
 	private int correctAnswerIndex;
 
-	private List<QuestionData> questions = new List<QuestionData>();
+	private List<QuestionData> questions = new();
 	private Random random = new Random();
 	
 	// Called when the node enters the scene tree for the first time.
@@ -124,11 +126,13 @@ public partial class QuestionMenu : Control
 		{
 			feedbackLabel.Text = "Correct!";
 			feedbackLabel.Modulate = Colors.Green;
+			EmitSignal(SignalName.AnsweredQuestion, true);
 		}
 		else
 		{
 			feedbackLabel.Text = "Incorrect. The correct answer was: " + answerButtons[correctAnswerIndex].Text;
 			feedbackLabel.Modulate = Colors.Red;
+			EmitSignal(SignalName.AnsweredQuestion, false);
 		}
 		feedbackLabel.Show();
 

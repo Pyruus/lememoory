@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cykbeye148vau"]
 
-[ext_resource type="PackedScene" uid="uid://h1nt8pj5k5wa" path="res://pawn.tscn" id="1_08rqc"]
+[ext_resource type="PackedScene" uid="uid://h1nt8pj5k5wa" path="res://Objects/pawn.tscn" id="1_08rqc"]
 
 [node name="Board" type="Node2D"]
 

@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://dxiij4l1s6q1j"]
+[gd_scene load_steps=3 format=3 uid="uid://dxiij4l1s6q1j"]
+
+[ext_resource type="Script" path="res://Scripts/Field.cs" id="1_kf8wo"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_on0qp"]
 
 [node name="Field" type="Area2D"]
+script = ExtResource("1_kf8wo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(182, 194)
+texture = SubResource("ImageTexture_on0qp")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(0.641329, 0.407907, 0.421962, 1)

@@ -19,6 +19,7 @@ public class MoveToCornerEvent:Event {
 	
 	public override void resolve() {
 		this.currentPlayerPawn.Position = new Vector2(0,0);
+		this.currentPlayerPawn.CurrentField = Globals.Instance.Tiles[0];
 	}
 }
 

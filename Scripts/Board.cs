@@ -9,6 +9,7 @@ public partial class Board : Node2D
 	private Pawn currentPlayer;
 	private Dice dice;
 	private Button rollButton;
+	private QuestionMenu questionModal;
 	
 	private int fieldSizePixels = 128;
 	
@@ -29,13 +30,13 @@ public partial class Board : Node2D
 	private void CreateBoard()
 	{
 		var boardLayout = new Field.TileType?[,] {
-			{ Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL },
+			{ Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.EVENT, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.EVENT, Field.TileType.NORMAL, Field.TileType.NORMAL },
 			{ Field.TileType.NORMAL, null, Field.TileType.NORMAL, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.NORMAL, null, Field.TileType.NORMAL },
-			{ Field.TileType.NORMAL,  Field.TileType.NORMAL, Field.TileType.SPECIAL, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.SPECIAL, Field.TileType.NORMAL, Field.TileType.NORMAL },
+			{ Field.TileType.NORMAL,  Field.TileType.NORMAL, Field.TileType.SPECIAL, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.SPECIAL, Field.TileType.NORMAL, Field.TileType.QUESTION },
 			{ Field.TileType.NORMAL, null, null, null, null, null, Field.TileType.FINAL, null, null, null, null, null, Field.TileType.NORMAL },
-			{ Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.SPECIAL, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.SPECIAL, Field.TileType.NORMAL, Field.TileType.NORMAL },
+			{ Field.TileType.QUESTION, Field.TileType.NORMAL, Field.TileType.SPECIAL, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.SPECIAL, Field.TileType.NORMAL, Field.TileType.NORMAL },
 				{ Field.TileType.NORMAL, null, Field.TileType.NORMAL, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.NORMAL, null, Field.TileType.NORMAL },
-							{ Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL },
+							{ Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.QUESTION, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,Field.TileType.EVENT, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL },
 
 		};
 		
@@ -53,6 +54,7 @@ public partial class Board : Node2D
 					// Instantiate and set tile properties
 					var currentField = (Field)GD.Load<PackedScene>("res://scenes/Field.tscn").Instantiate();
 					currentField.tileType = tileType.Value;
+					currentField.board = this;
 					currentField.Position = new Vector2(x * fieldSizePixels, y * fieldSizePixels);
 					
 					// Add tile to the tile map and to the list of tiles
@@ -91,6 +93,8 @@ public partial class Board : Node2D
 		dice.Position = new Vector2(3 * fieldSizePixels, 3 * fieldSizePixels);
 		rollButton.Position = new Vector2(3 * fieldSizePixels - rollButton.GetSize()[1]/2, 3 * fieldSizePixels + 50);
 		AddChild(dice);
+		
+		Globals.Instance.Tiles = tiles;
 	}
 
 	private void OnRollButtonPressed()
@@ -149,6 +153,15 @@ public partial class Board : Node2D
 				neighbour.previouslyVisitedField = previousLastVisited;
 			}
 		}
+	}
+	
+	public void askQuestion() {
+		GD.Print("ASKED");
+		questionModal = (QuestionMenu)GD.Load<PackedScene>("res://Scenes/question_menu.tscn").Instantiate();
+		questionModal.Position = new Vector2(0,0);
+		AddChild(questionModal);
+		questionModal.ShowRandomQuestion();
+		
 	}
 	
 }

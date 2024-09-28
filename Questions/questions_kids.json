@@ -1,419 +1,209 @@
 {
   "questions": [
 	{
-	  "question": "Which country won the FIFA World Cup in 2018?",
-	  "answers": ["Germany", "Argentina", "France", "Brazil"],
-	  "correctIndex": 2
+	  "question": "What is the color of the sky on a clear day?",
+	  "answers": ["Blue", "Green", "Yellow", "Red"],
+	  "correctIndex": 0
 	},
 	{
-	  "question": "Who holds the record for the most Grand Slam titles in men's tennis?",
-	  "answers": ["Roger Federer", "Rafael Nadal", "Novak Djokovic", "Pete Sampras"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "Which sport is known as the 'king of sports'?",
-	  "answers": ["Cricket", "Soccer", "Basketball", "Tennis"],
+	  "question": "What animal is known as man's best friend?",
+	  "answers": ["Cat", "Dog", "Bird", "Fish"],
 	  "correctIndex": 1
 	},
 	{
-	  "question": "How many players are on a basketball team on the court at once?",
+	  "question": "What do you call a baby cat?",
+	  "answers": ["Puppy", "Kitten", "Cub", "Foal"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "How many legs does a spider have?",
+	  "answers": ["Six", "Eight", "Ten", "Twelve"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "What is the name of the fairy in Peter Pan?",
+	  "answers": ["Cinderella", "Tinkerbell", "Aurora", "Snow White"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "What fruit is known for keeping the doctor away if eaten once a day?",
+	  "answers": ["Banana", "Orange", "Apple", "Grapes"],
+	  "correctIndex": 2
+	},
+	{
+	  "question": "What is the largest planet in our solar system?",
+	  "answers": ["Earth", "Jupiter", "Mars", "Saturn"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "Which animal is known for its ability to change colors?",
+	  "answers": ["Chameleon", "Elephant", "Tiger", "Lion"],
+	  "correctIndex": 0
+	},
+	{
+	  "question": "What do you call the story of a person's life written by themselves?",
+	  "answers": ["Biography", "Autobiography", "Novel", "Poem"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "What is the capital of the United States?",
+	  "answers": ["New York", "Los Angeles", "Washington, D.C.", "Chicago"],
+	  "correctIndex": 2
+	},
+	{
+	  "question": "What do you call the process by which plants make their food?",
+	  "answers": ["Digestion", "Photosynthesis", "Respiration", "Transpiration"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "Which shape has three sides?",
+	  "answers": ["Square", "Triangle", "Circle", "Rectangle"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "What is the main ingredient in pancakes?",
+	  "answers": ["Flour", "Rice", "Sugar", "Salt"],
+	  "correctIndex": 0
+	},
+	{
+	  "question": "Which ocean is the largest?",
+	  "answers": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+	  "correctIndex": 3
+	},
+	{
+	  "question": "What animal is known for its long neck?",
+	  "answers": ["Elephant", "Giraffe", "Horse", "Kangaroo"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "How many colors are there in a rainbow?",
 	  "answers": ["5", "6", "7", "8"],
+	  "correctIndex": 2
+	},
+	{
+	  "question": "What do bees make?",
+	  "answers": ["Honey", "Jam", "Milk", "Sugar"],
 	  "correctIndex": 0
 	},
 	{
-	  "question": "In which country were the first modern Olympics held?",
-	  "answers": ["France", "Greece", "USA", "Italy"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "Which golfer is known as 'The Golden Bear'?",
-	  "answers": ["Arnold Palmer", "Tiger Woods", "Jack Nicklaus", "Phil Mickelson"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "In which sport would you perform a slam dunk?",
-	  "answers": ["Soccer", "Tennis", "Basketball", "Volleyball"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "How long is an Olympic swimming pool?",
-	  "answers": ["25 meters", "50 meters", "75 meters", "100 meters"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "Which country hosted the 2016 Summer Olympics?",
-	  "answers": ["Brazil", "China", "Russia", "UK"],
+	  "question": "What is the opposite of hot?",
+	  "answers": ["Cold", "Warm", "Spicy", "Cool"],
 	  "correctIndex": 0
 	},
 	{
-	  "question": "In which sport is the term 'love' used?",
-	  "answers": ["Badminton", "Table Tennis", "Tennis", "Squash"],
+	  "question": "What do you call a young dog?",
+	  "answers": ["Kitten", "Puppy", "Cub", "Foal"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "What is the name of the toy cowboy in Toy Story?",
+	  "answers": ["Buzz Lightyear", "Woody", "Mr. Potato Head", "Rex"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "What is 2 + 2?",
+	  "answers": ["3", "4", "5", "6"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "What do we call the day we celebrate our birth?",
+	  "answers": ["Anniversary", "Birthday", "Holiday", "Celebration"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "What is the name of the planet we live on?",
+	  "answers": ["Mars", "Earth", "Venus", "Jupiter"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "What animal is known as the 'King of the Jungle'?",
+	  "answers": ["Tiger", "Elephant", "Lion", "Bear"],
 	  "correctIndex": 2
 	},
 	{
-	  "question": "Which NFL team has won the most Super Bowls?",
-	  "answers": ["Dallas Cowboys", "Pittsburgh Steelers", "San Francisco 49ers", "New England Patriots"],
+	  "question": "Which fruit is yellow and curved?",
+	  "answers": ["Apple", "Banana", "Orange", "Grape"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "What is the main ingredient in a salad?",
+	  "answers": ["Lettuce", "Rice", "Pasta", "Bread"],
+	  "correctIndex": 0
+	},
+	{
+	  "question": "What do you call the place where you go to learn?",
+	  "answers": ["Park", "School", "Library", "Home"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "What animal is known for its black and white stripes?",
+	  "answers": ["Tiger", "Zebra", "Panda", "Skunk"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "What do you call a story that teaches a lesson?",
+	  "answers": ["Fable", "Fairy Tale", "Biography", "Poem"],
+	  "correctIndex": 0
+	},
+	{
+	  "question": "Which insect is known for its ability to fly?",
+	  "answers": ["Ant", "Spider", "Butterfly", "Worm"],
+	  "correctIndex": 2
+	},
+	{
+	  "question": "What color do you get when you mix red and white?",
+	  "answers": ["Pink", "Purple", "Orange", "Brown"],
+	  "correctIndex": 0
+	},
+	{
+	  "question": "What is the tallest animal in the world?",
+	  "answers": ["Elephant", "Giraffe", "Horse", "Kangaroo"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "What do you call a house made of ice?",
+	  "answers": ["Igloo", "Cabin", "Castle", "Hut"],
+	  "correctIndex": 0
+	},
+	{
+	  "question": "Which season comes after winter?",
+	  "answers": ["Fall", "Summer", "Spring", "Autumn"],
+	  "correctIndex": 2
+	},
+	{
+	  "question": "What is the shape of a ball?",
+	  "answers": ["Square", "Triangle", "Circle", "Rectangle"],
+	  "correctIndex": 2
+	},
+	{
+	  "question": "What do you call the sound a cat makes?",
+	  "answers": ["Bark", "Meow", "Roar", "Chirp"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "What do we use to write on paper?",
+	  "answers": ["Paint", "Pencil", "Chalk", "Marker"],
+	  "correctIndex": 1
+	},
+	{
+	  "question": "What color is grass?",
+	  "answers": ["Red", "Yellow", "Green", "Blue"],
+	  "correctIndex": 2
+	},
+	{
+	  "question": "Which ocean is known for being the coldest?",
+	  "answers": ["Atlantic", "Indian", "Arctic", "Pacific"],
+	  "correctIndex": 2
+	},
+	{
+	  "question": "What do you call a person who helps you with your homework?",
+	  "answers": ["Friend", "Teacher", "Parent", "Tutor"],
 	  "correctIndex": 3
 	},
 	{
-	  "question": "Which player holds the record for the most goals in a single Premier League season?",
-	  "answers": ["Thierry Henry", "Alan Shearer", "Mohamed Salah", "Sergio Aguero"],
+	  "question": "Which animal has a long trunk?",
+	  "answers": ["Hippopotamus", "Rhino", "Elephant", "Giraffe"],
 	  "correctIndex": 2
-	},
-	{
-	  "question": "What is the maximum break in snooker?",
-	  "answers": ["137", "147", "157", "167"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "Which country won the Rugby World Cup in 2019?",
-	  "answers": ["New Zealand", "England", "South Africa", "Australia"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "Who is the all-time top scorer in NBA history?",
-	  "answers": ["Michael Jordan", "Kobe Bryant", "LeBron James", "Kareem Abdul-Jabbar"],
-	  "correctIndex": 3
-	},
-	{
-	  "question": "Which sport is associated with the Ryder Cup?",
-	  "answers": ["Golf", "Cricket", "Rugby", "Tennis"],
-	  "correctIndex": 0
-	},
-	{
-	  "question": "How many holes are played in a standard round of golf?",
-	  "answers": ["9", "12", "18", "24"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "What sport is played at Wimbledon?",
-	  "answers": ["Cricket", "Rugby", "Tennis", "Golf"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "Who has won the most FIFA Ballon d'Or awards?",
-	  "answers": ["Cristiano Ronaldo", "Lionel Messi", "Zinedine Zidane", "Ronaldinho"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "Which athlete is known as the fastest man alive?",
-	  "answers": ["Carl Lewis", "Usain Bolt", "Tyson Gay", "Yohan Blake"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "In which sport would you use a shuttlecock?",
-	  "answers": ["Tennis", "Badminton", "Squash", "Table Tennis"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "How many points is a touchdown worth in American football?",
-	  "answers": ["3", "6", "7", "8"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "Who holds the record for the most home runs in Major League Baseball?",
-	  "answers": ["Babe Ruth", "Hank Aaron", "Barry Bonds", "Alex Rodriguez"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "Which country won the first FIFA Women's World Cup?",
-	  "answers": ["USA", "Norway", "Germany", "Japan"],
-	  "correctIndex": 0
-	},
-	{
-	  "question": "How many players are on a soccer team on the field?",
-	  "answers": ["9", "10", "11", "12"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "Which country has won the most cricket World Cups?",
-	  "answers": ["India", "Australia", "West Indies", "England"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "Which NBA team has won the most championships?",
-	  "answers": ["Chicago Bulls", "Los Angeles Lakers", "Boston Celtics", "Golden State Warriors"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "Which sport is played with a puck?",
-	  "answers": ["Hockey", "Cricket", "Football", "Golf"],
-	  "correctIndex": 0
-	},
-	{
-	  "question": "In which year were the first Winter Olympics held?",
-	  "answers": ["1912", "1924", "1936", "1952"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "Who holds the record for the most points in a single NBA game?",
-	  "answers": ["Michael Jordan", "Wilt Chamberlain", "Kobe Bryant", "LeBron James"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "Which country has won the most medals in the Summer Olympics?",
-	  "answers": ["Russia", "Germany", "USA", "China"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "How many sets are in a volleyball match?",
-	  "answers": ["3", "5", "7", "9"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "In which country is the Tour de France held?",
-	  "answers": ["Italy", "France", "Spain", "Switzerland"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "Which team won the 2020 NBA Championship?",
-	  "answers": ["Miami Heat", "Los Angeles Lakers", "Boston Celtics", "Golden State Warriors"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "How many players are there in a rugby union team?",
-	  "answers": ["11", "13", "15", "17"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "Who is the current captain of the Indian cricket team (2024)?",
-	  "answers": ["Virat Kohli", "Rohit Sharma", "MS Dhoni", "Shikhar Dhawan"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "How many periods are there in an ice hockey game?",
-	  "answers": ["2", "3", "4", "5"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "Who won the first UFC fight?",
-	  "answers": ["Royce Gracie", "Ken Shamrock", "Mark Coleman", "Chuck Liddell"],
-	  "correctIndex": 0
-	},
-	{
-	  "question": "Which country is the 2022 FIFA World Cup host?",
-	  "answers": ["Russia", "Qatar", "USA", "Brazil"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "In which year did Michael Jordan retire from basketball for the second time?",
-	  "answers": ["1998", "2001", "2003", "2005"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "What is the nickname of the Australian national rugby team?",
-	  "answers": ["All Blacks", "Wallabies", "Springboks", "Pumas"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "In which country is the Monaco Grand Prix held?",
-	  "answers": ["France", "Italy", "Monaco", "Spain"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "How many gold medals did Michael Phelps win at the 2008 Beijing Olympics?",
-	  "answers": ["6", "7", "8", "9"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "Which country won the ICC Cricket World Cup in 2011?",
-	  "answers": ["Australia", "India", "Sri Lanka", "Pakistan"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "Which female tennis player has won the most Grand Slam titles?",
-	  "answers": ["Serena Williams", "Steffi Graf", "Margaret Court", "Martina Navratilova"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "How many players are on an American football team on the field at one time?",
-	  "answers": ["9", "10", "11", "12"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "What is the name of the professional ice hockey league in North America?",
-	  "answers": ["NHL", "NFL", "MLB", "NBA"],
-	  "correctIndex": 0
-	},
-	{
-	  "question": "Which country has won the most Davis Cup tennis titles?",
-	  "answers": ["Australia", "USA", "France", "Spain"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "Who is the youngest Formula 1 world champion?",
-	  "answers": ["Sebastian Vettel", "Lewis Hamilton", "Fernando Alonso", "Michael Schumacher"],
-	  "correctIndex": 0
-	},
-	{
-	  "question": "In which sport is the 'Stanley Cup' awarded?",
-	  "answers": ["Rugby", "Ice Hockey", "Tennis", "Baseball"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "Which basketball player is known as 'The Black Mamba'?",
-	  "answers": ["LeBron James", "Michael Jordan", "Kobe Bryant", "Shaquille O'Neal"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "Which cricket ground is known as the 'Home of Cricket'?",
-	  "answers": ["Eden Gardens", "The Oval", "Old Trafford", "Lord's"],
-	  "correctIndex": 3
-	},
-	{
-	  "question": "How long is a marathon?",
-	  "answers": ["21.1 km", "26.2 km", "42.195 km", "50 km"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "Which team won the FIFA World Cup in 2010?",
-	  "answers": ["Brazil", "Spain", "Germany", "Italy"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "In which sport is the 'yellow jersey' awarded?",
-	  "answers": ["Cricket", "Cycling", "Tennis", "Formula 1"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "Which country won the 2007 Rugby World Cup?",
-	  "answers": ["Australia", "England", "New Zealand", "South Africa"],
-	  "correctIndex": 3
-	},
-	{
-	  "question": "What is the standard length of a soccer match?",
-	  "answers": ["90 minutes", "60 minutes", "75 minutes", "120 minutes"],
-	  "correctIndex": 0
-	},
-	{
-	  "question": "Which tennis tournament is held annually in Paris?",
-	  "answers": ["Wimbledon", "US Open", "French Open", "Australian Open"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "Which country has won the most FIFA Women's World Cups?",
-	  "answers": ["Germany", "Brazil", "USA", "Norway"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "Which golfer won the 2019 Masters Tournament?",
-	  "answers": ["Tiger Woods", "Dustin Johnson", "Rory McIlroy", "Brooks Koepka"],
-	  "correctIndex": 0
-	},
-	{
-	  "question": "Which country hosted the 2012 Summer Olympics?",
-	  "answers": ["USA", "China", "UK", "Russia"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "How many times has Novak Djokovic won the Australian Open (as of 2023)?",
-	  "answers": ["5", "7", "9", "10"],
-	  "correctIndex": 3
-	},
-	{
-	  "question": "Which athlete has won the most Olympic gold medals?",
-	  "answers": ["Michael Phelps", "Carl Lewis", "Usain Bolt", "Larisa Latynina"],
-	  "correctIndex": 0
-	},
-	{
-	  "question": "In which sport is the term 'bunker' used?",
-	  "answers": ["Golf", "Cricket", "Rugby", "Tennis"],
-	  "correctIndex": 0
-	},
-	{
-	  "question": "Which NBA player is nicknamed 'The Greek Freak'?",
-	  "answers": ["Giannis Antetokounmpo", "Nikola Jokic", "Joel Embiid", "Luka Doncic"],
-	  "correctIndex": 0
-	},
-	{
-	  "question": "Which country won the Euro 2020 football championship (held in 2021)?",
-	  "answers": ["England", "France", "Italy", "Portugal"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "In which sport do you compete for the 'Ashes' trophy?",
-	  "answers": ["Tennis", "Golf", "Cricket", "Rugby"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "Who holds the women's world record in the 100m sprint?",
-	  "answers": ["Shelly-Ann Fraser-Pryce", "Florence Griffith-Joyner", "Carmelita Jeter", "Marion Jones"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "Which country won the Copa America in 2021?",
-	  "answers": ["Argentina", "Brazil", "Chile", "Uruguay"],
-	  "correctIndex": 0
-	},
-	{
-	  "question": "In what year did LeBron James win his first NBA Championship?",
-	  "answers": ["2008", "2010", "2012", "2014"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "Which country won the first Cricket World Cup in 1975?",
-	  "answers": ["India", "Australia", "West Indies", "England"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "How many points is a three-pointer worth in basketball?",
-	  "answers": ["1", "2", "3", "4"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "Which female gymnast has the most Olympic medals?",
-	  "answers": ["Simone Biles", "Nadia Comaneci", "Larisa Latynina", "Shannon Miller"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "Which country won the most medals at the Tokyo 2020 Olympics?",
-	  "answers": ["China", "USA", "Japan", "Russia"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "In which year did Tiger Woods win his first major championship?",
-	  "answers": ["1997", "2000", "2003", "2005"],
-	  "correctIndex": 0
-	},
-	{
-	  "question": "Which basketball player has the most assists in NBA history?",
-	  "answers": ["Magic Johnson", "Chris Paul", "John Stockton", "Steve Nash"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "In which sport is the term 'hat-trick' commonly used?",
-	  "answers": ["Baseball", "Cricket", "Soccer", "Basketball"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "Which country won the first ever FIFA World Cup in 1930?",
-	  "answers": ["Argentina", "Brazil", "Italy", "Uruguay"],
-	  "correctIndex": 3
-	},
-	{
-	  "question": "What is the diameter of a basketball hoop?",
-	  "answers": ["15 inches", "16 inches", "18 inches", "20 inches"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "How many rounds are there in a championship boxing match?",
-	  "answers": ["10", "12", "15", "18"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "Which tennis player is known as 'The King of Clay'?",
-	  "answers": ["Roger Federer", "Rafael Nadal", "Novak Djokovic", "Andy Murray"],
-	  "correctIndex": 1
-	},
-	{
-	  "question": "In which year was the first Super Bowl played?",
-	  "answers": ["1960", "1965", "1967", "1970"],
-	  "correctIndex": 2
-	},
-	{
-	  "question": "Which country won the 1998 FIFA World Cup?",
-	  "answers": ["Brazil", "France", "Germany", "Italy"],
-	  "correctIndex": 1
 	}
   ]
 }

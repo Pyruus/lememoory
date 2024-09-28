@@ -44,7 +44,7 @@ public partial class QuestionMenu : Control
 	
 	private void LoadQuestions()
 	{
-		var jsonFile = FileAccess.Open("res://Questions/questions.json", FileAccess.ModeFlags.Read);
+		var jsonFile = FileAccess.Open($"res://Questions/{Globals.SelectedQuestionsCategory.jsonName}", FileAccess.ModeFlags.Read);
 		var jsonString = jsonFile.GetAsText();
 		jsonFile.Close();
 

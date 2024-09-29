@@ -8,7 +8,7 @@ public partial class QuestionMenu : Control
 	[Export]
 	public PackedScene AnswerButtonScene { get; set; }
 	[Signal]
-	public delegate void AnsweredQuestionEventHandler(bool correct);
+	public delegate void AnsweredQuestionEventHandler(bool correct, int rewardIndex);
 
 	private Label questionLabel;
 	private VBoxContainer answerContainer;
@@ -73,7 +73,7 @@ public partial class QuestionMenu : Control
 		}
 	}
 
-	public void ShowRandomQuestion()
+	public void ShowRandomQuestion(int rewardIndex = 0)
 	{
 		if (questions.Count == 0)
 		{
@@ -82,11 +82,11 @@ public partial class QuestionMenu : Control
 		}
 
 		var randomQuestion = questions[random.Next(questions.Count)];
-		ShowQuestion(randomQuestion.Question, randomQuestion.Answers.ToArray(), randomQuestion.CorrectIndex);
+		ShowQuestion(randomQuestion.Question, randomQuestion.Answers.ToArray(), randomQuestion.CorrectIndex, rewardIndex);
 		questions.Remove(randomQuestion);
 	}
 	
-	public void ShowQuestion(string question, string[] answers, int correctIndex)
+	public void ShowQuestion(string question, string[] answers, int correctIndex, int rewardIndex = 0)
 	{
 		// Set question text
 		questionLabel.Text = question;
@@ -104,7 +104,7 @@ public partial class QuestionMenu : Control
 			var answerButton = AnswerButtonScene.Instantiate() as Button;
 			answerButton.Text = answers[i];
 			int index = i;
-			answerButton.Pressed += () => OnAnswerSelected(index);
+			answerButton.Pressed += () => OnAnswerSelected(index, rewardIndex);
 			answerContainer.AddChild(answerButton);
 			answerButtons.Add(answerButton);
 		}
@@ -117,7 +117,7 @@ public partial class QuestionMenu : Control
 		Show();
 	}
 
-	private void OnAnswerSelected(int selectedIndex)
+	private void OnAnswerSelected(int selectedIndex, int rewardIndex = 0)
 	{
 		GD.Print(selectedIndex);
 		// Disable all answer buttons
@@ -131,13 +131,13 @@ public partial class QuestionMenu : Control
 		{
 			feedbackLabel.Text = "Correct!";
 			feedbackLabel.Modulate = Colors.Green;
-			EmitSignal(SignalName.AnsweredQuestion, true);
+			EmitSignal(SignalName.AnsweredQuestion, true, rewardIndex);
 		}
 		else
 		{
 			feedbackLabel.Text = "Incorrect. The correct answer was: " + answerButtons[correctAnswerIndex].Text;
 			feedbackLabel.Modulate = Colors.Red;
-			EmitSignal(SignalName.AnsweredQuestion, false);
+			EmitSignal(SignalName.AnsweredQuestion, false, rewardIndex);
 		}
 		feedbackLabel.Show();
 

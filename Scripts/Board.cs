@@ -68,9 +68,9 @@ public partial class Board : Node2D
 		var boardLayout = new Field.TileType?[,] {
 			{ Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.EVENT, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.EVENT, Field.TileType.NORMAL, Field.TileType.NORMAL },
 			{ Field.TileType.NORMAL, null, Field.TileType.NORMAL, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.NORMAL, null, Field.TileType.NORMAL },
-			{ Field.TileType.NORMAL,  Field.TileType.NORMAL, Field.TileType.SPECIAL, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.SPECIAL, Field.TileType.NORMAL, Field.TileType.QUESTION },
+			{ Field.TileType.NORMAL,  Field.TileType.NORMAL, Field.TileType.SPECIAL1, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.SPECIAL3, Field.TileType.NORMAL, Field.TileType.QUESTION },
 			{ Field.TileType.NORMAL, null, null, null, null, null, Field.TileType.FINAL, null, null, null, null, null, Field.TileType.NORMAL },
-			{ Field.TileType.QUESTION, Field.TileType.NORMAL, Field.TileType.SPECIAL, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.SPECIAL, Field.TileType.NORMAL, Field.TileType.NORMAL },
+			{ Field.TileType.QUESTION, Field.TileType.NORMAL, Field.TileType.SPECIAL2, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.SPECIAL4, Field.TileType.NORMAL, Field.TileType.NORMAL },
 				{ Field.TileType.NORMAL, null, Field.TileType.NORMAL, null, null, null, Field.TileType.NORMAL, null, null, null, Field.TileType.NORMAL, null, Field.TileType.NORMAL },
 							{ Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.QUESTION, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL,Field.TileType.EVENT, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL, Field.TileType.NORMAL },
 
@@ -140,6 +140,10 @@ public partial class Board : Node2D
 			field.Clickable = true;
 			field.Clicked += MoveToField;
 		}
+		GD.Print($"First blueprint: {currentPlayer.hasFirstBluePrint}");
+		GD.Print($"Second blueprint: {currentPlayer.hasSecondBluePrint}");
+		GD.Print($"Third blueprint: {currentPlayer.hasThirdBluePrint}");
+		GD.Print($"Fourth blueprint: {currentPlayer.hasFourthBluePrint}");
 	}
 
 	private void MoveToField(Field newField)
@@ -187,15 +191,36 @@ public partial class Board : Node2D
 		}
 	}
 	
-	public void askQuestion() {
+	public void askQuestion(int rewardIndex = 0) {
 		GD.Print("ASKED");
-		questionModal.ShowRandomQuestion();
+		questionModal.ShowRandomQuestion(rewardIndex);
 		
 	}
 
-	private void OnQuestionAnswered(bool correctAnswer)
+	private void OnQuestionAnswered(bool correctAnswer, int rewardIndex)
 	{
 		GD.Print($"Question answered {correctAnswer}");
+
+		if (!correctAnswer)
+		{
+			return;
+		}
+		
+		switch (rewardIndex)
+		{
+			case 1:
+				currentPlayer.hasFirstBluePrint = true;
+				break;
+			case 2:
+				currentPlayer.hasSecondBluePrint = true;
+				break;
+			case 3:
+				currentPlayer.hasThirdBluePrint = true;
+				break;
+			case 4:
+				currentPlayer.hasFourthBluePrint = true;
+				break;
+		}
 	}
 	
 	public void drawCurrentPawnItems() {

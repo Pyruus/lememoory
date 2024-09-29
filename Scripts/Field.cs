@@ -8,7 +8,7 @@ public partial class Field : Area2D
 
 	private CollisionShape2D collisionShape;
 
-	public enum TileType { QUESTION, NORMAL, SPECIAL, EVENT, FINAL }
+	public enum TileType { QUESTION, NORMAL, SPECIAL1, SPECIAL2, SPECIAL3, SPECIAL4, EVENT, FINAL }
 	public TileType tileType = TileType.NORMAL;
 
 	public List<Field> neighbours = new List<Field>();
@@ -56,7 +56,10 @@ public partial class Field : Area2D
 			case TileType.NORMAL:
 				sprite.Texture = (Texture2D)GD.Load("res://Assets/pole_1.png");
 				break;
-			case TileType.SPECIAL:
+			case TileType.SPECIAL1:
+			case TileType.SPECIAL2:
+			case TileType.SPECIAL3:
+			case TileType.SPECIAL4:
 				sprite.Texture = (Texture2D)GD.Load("res://Assets/pole_magia.png");
 				break;
 			case TileType.EVENT:
@@ -79,11 +82,20 @@ public partial class Field : Area2D
 				break;
 			case TileType.NORMAL:
 				break;
-			case TileType.SPECIAL:
-				getGoalPiece();
+			case TileType.SPECIAL1:
+				askQuestion(1);
+				break;
+			case TileType.SPECIAL2:
+				askQuestion(2);
+				break;
+			case TileType.SPECIAL3:
+				askQuestion(3);
+				break;
+			case TileType.SPECIAL4:
+				askQuestion(4);
 				break;
 			case TileType.FINAL:
-				checkWinningCondition();
+				checkWinningCondition(Globals.Instance.CurrentPlayerPawn);
 				break;
 			case TileType.EVENT:
 				getEvent();
@@ -93,13 +105,22 @@ public partial class Field : Area2D
 	public void askQuestion() {
 		board.askQuestion();
 	}
+	public void askQuestion(int specialIndex) {
+		board.askQuestion(specialIndex);
+	}
 	
 	public void getGoalPiece() {
 		
 	}
 	
-	public void checkWinningCondition() {
-		
+	public void checkWinningCondition(Pawn currentPlayer) {
+		if (currentPlayer.hasFirstBluePrint &&
+			currentPlayer.hasSecondBluePrint &&
+			currentPlayer.hasThirdBluePrint &&
+			currentPlayer.hasFourthBluePrint)
+		{
+			GD.Print("WON!");
+		}
 	}
 	
 	public void getEvent() {

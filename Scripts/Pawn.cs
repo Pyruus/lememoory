@@ -18,6 +18,11 @@ public partial class Pawn : Area2D
 	
 	public bool skipsNextTurn = false;
 
+	public bool hasFirstBluePrint = false;
+	public bool hasSecondBluePrint = false;
+	public bool hasThirdBluePrint = false;
+	public bool hasFourthBluePrint = false;
+
 	public override void _Ready()
 	{
 		targetPosition = GlobalPosition;

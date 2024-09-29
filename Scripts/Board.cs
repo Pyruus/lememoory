@@ -212,7 +212,7 @@ public partial class Board : Node2D
 		AddChild(item); // Add the new item
 		index++;
 	}
-
+}
 
 	private void OnEventResolved(string title, string description)
 	{

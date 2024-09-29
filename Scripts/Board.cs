@@ -11,6 +11,7 @@ public partial class Board : Node2D
 	private Button rollButton;
 	private QuestionMenu questionModal;
 	private EventResolvedModal eventModal;
+	private WinnerScreen winnerScreen;
 	
 	private int fieldSizePixels = 128;
 	private Texture2D backpackSprite;
@@ -41,6 +42,7 @@ public partial class Board : Node2D
 		secondPawn.Position = new Vector2(tiles.LastOrDefault().Position.X + fieldSizePixels / 2, tiles.LastOrDefault().Position.Y + fieldSizePixels / 2);
 		secondPawn.CurrentField = tiles.LastOrDefault();
 		secondPawn.Connect("EventResolved", new Callable(this, nameof(OnEventResolved)));
+		secondPawn.sprite.Texture = (Texture2D)ResourceLoader.Load("res://Assets/igris.png");
 		
 		questionModal = (QuestionMenu)GD.Load<PackedScene>("res://Scenes/question_menu.tscn").Instantiate();
 		questionModal.Position = new Vector2(0,0);
@@ -56,6 +58,9 @@ public partial class Board : Node2D
 		eventModal = (EventResolvedModal)GD.Load<PackedScene>("res://Scenes/event_resolved_modal.tscn").Instantiate();
 		AddChild(eventModal);
 		eventModal.Hide();
+
+		winnerScreen = (WinnerScreen)GD.Load<PackedScene>("res://Scenes/winner_screen.tscn").Instantiate();
+		AddChild(winnerScreen);
 	}
 	
 	public override void _Draw() {
@@ -131,7 +136,7 @@ public partial class Board : Node2D
 	{
 		var roll = dice.OnRollButtonPressed();
 		rollButton.Disabled = true;
-		var currentField = currentPlayer.CurrentField;
+		var currentField = Globals.Instance.CurrentPlayerPawn.CurrentField;
 		var result = GetAvailableFields(roll, currentField);
 		foreach (var field in result)
 		{
@@ -139,16 +144,17 @@ public partial class Board : Node2D
 			field.Clickable = true;
 			field.Clicked += MoveToField;
 		}
-		GD.Print($"First blueprint: {currentPlayer.hasFirstBluePrint}");
-		GD.Print($"Second blueprint: {currentPlayer.hasSecondBluePrint}");
-		GD.Print($"Third blueprint: {currentPlayer.hasThirdBluePrint}");
-		GD.Print($"Fourth blueprint: {currentPlayer.hasFourthBluePrint}");
+		GD.Print($"First blueprint: {Globals.Instance.CurrentPlayerPawn.hasFirstBluePrint}");
+		GD.Print($"Second blueprint: {Globals.Instance.CurrentPlayerPawn.hasSecondBluePrint}");
+		GD.Print($"Third blueprint: {Globals.Instance.CurrentPlayerPawn.hasThirdBluePrint}");
+		GD.Print($"Fourth blueprint: {Globals.Instance.CurrentPlayerPawn.hasFourthBluePrint}");
+		GD.Print(Globals.Instance.CurrentPlayerPawn.Position);
 	}
 
 	private void MoveToField(Field newField)
 	{
-		currentPlayer.Position = new Vector2(newField.Position.X + fieldSizePixels/2, newField.Position.Y + fieldSizePixels/2);
-		currentPlayer.CurrentField = newField;
+		Globals.Instance.CurrentPlayerPawn.Position = new Vector2(newField.Position.X + fieldSizePixels/2, newField.Position.Y + fieldSizePixels/2);
+		Globals.Instance.CurrentPlayerPawn.CurrentField = newField;
 		
 		foreach (var field in tiles)
 		{
@@ -159,6 +165,16 @@ public partial class Board : Node2D
 
 		rollButton.Disabled = false;
 		newField.onEnter();
+		if (newField.tileType != Field.TileType.SPECIAL1 &&
+			newField.tileType != Field.TileType.SPECIAL2 &&
+			newField.tileType != Field.TileType.SPECIAL3 &&
+			newField.tileType != Field.TileType.SPECIAL4 &&
+			newField.tileType != Field.TileType.QUESTION)
+		{
+			Globals.Instance.CurrentPlayerPawn = Globals.Instance.Pawns.FirstOrDefault(x => x != Globals.Instance.CurrentPlayerPawn);
+			drawCurrentPawnItems();
+		}
+		GD.Print(Globals.Instance.CurrentPlayerPawn.Position);
 	}
 
 	private List<Field> GetAvailableFields(int roll, Field startField)
@@ -198,56 +214,62 @@ public partial class Board : Node2D
 
 	private void OnQuestionAnswered(bool correctAnswer, int rewardIndex)
 	{
+		GD.Print(Globals.Instance.CurrentPlayerPawn.Position);
 		GD.Print($"Question answered {correctAnswer}");
 
 		if (!correctAnswer)
 		{
+			Globals.Instance.CurrentPlayerPawn = Globals.Instance.Pawns.FirstOrDefault(x => x != Globals.Instance.CurrentPlayerPawn);
+			drawCurrentPawnItems();
 			return;
 		}
 		
 		switch (rewardIndex)
 		{
 			case 1:
-				if (!currentPlayer.hasFirstBluePrint)
+				if (!Globals.Instance.CurrentPlayerPawn.hasFirstBluePrint)
 				{
 					var newItem = (Item)GD.Load<PackedScene>("res://Scenes/Item.tscn").Instantiate();
-					newItem.setupItem(Item.ItemType.BlueprintA, currentPlayer);
-					currentPlayer.items.Add(newItem);
+					newItem.setupItem(Item.ItemType.BlueprintA, Globals.Instance.CurrentPlayerPawn);
+					Globals.Instance.CurrentPlayerPawn.items.Add(newItem);
 					Globals.Instance.Board.drawCurrentPawnItems();
-					currentPlayer.hasFirstBluePrint = true;	
+					Globals.Instance.CurrentPlayerPawn.hasFirstBluePrint = true;	
 				}
 				break;
 			case 2:
-				if (!currentPlayer.hasSecondBluePrint)
+				if (!Globals.Instance.CurrentPlayerPawn.hasSecondBluePrint)
 				{
 					var newItem = (Item)GD.Load<PackedScene>("res://Scenes/Item.tscn").Instantiate();
-					newItem.setupItem(Item.ItemType.BlueprintB, currentPlayer);
-					currentPlayer.items.Add(newItem);
+					newItem.setupItem(Item.ItemType.BlueprintB, Globals.Instance.CurrentPlayerPawn);
+					Globals.Instance.CurrentPlayerPawn.items.Add(newItem);
 					Globals.Instance.Board.drawCurrentPawnItems();
-					currentPlayer.hasSecondBluePrint = true;	
+					Globals.Instance.CurrentPlayerPawn.hasSecondBluePrint = true;	
 				}
 				break;
 			case 3:
-				if (!currentPlayer.hasThirdBluePrint)
+				if (!Globals.Instance.CurrentPlayerPawn.hasThirdBluePrint)
 				{
 					var newItem = (Item)GD.Load<PackedScene>("res://Scenes/Item.tscn").Instantiate();
-					newItem.setupItem(Item.ItemType.BlueprintC, currentPlayer);
-					currentPlayer.items.Add(newItem);
+					newItem.setupItem(Item.ItemType.BlueprintC, Globals.Instance.CurrentPlayerPawn);
+					Globals.Instance.CurrentPlayerPawn.items.Add(newItem);
 					Globals.Instance.Board.drawCurrentPawnItems();
-					currentPlayer.hasThirdBluePrint = true;	
+					Globals.Instance.CurrentPlayerPawn.hasThirdBluePrint = true;	
 				}
 				break;
 			case 4:
-				if (!currentPlayer.hasThirdBluePrint)
+				if (!Globals.Instance.CurrentPlayerPawn.hasThirdBluePrint)
 				{
 					var newItem = (Item)GD.Load<PackedScene>("res://Scenes/Item.tscn").Instantiate();
-					newItem.setupItem(Item.ItemType.BlueprintD, currentPlayer);
-					currentPlayer.items.Add(newItem);
+					newItem.setupItem(Item.ItemType.BlueprintD, Globals.Instance.CurrentPlayerPawn);
+					Globals.Instance.CurrentPlayerPawn.items.Add(newItem);
 					Globals.Instance.Board.drawCurrentPawnItems();
-					currentPlayer.hasFourthBluePrint = true;	
+					Globals.Instance.CurrentPlayerPawn.hasFourthBluePrint = true;	
 				}
 				break;
 		}
+		Globals.Instance.CurrentPlayerPawn = Globals.Instance.Pawns.FirstOrDefault(x => x != Globals.Instance.CurrentPlayerPawn);
+		drawCurrentPawnItems();
+		GD.Print(Globals.Instance.CurrentPlayerPawn.Position);
 	}
 	
 	public void drawCurrentPawnItems() {
@@ -287,6 +309,12 @@ public partial class Board : Node2D
 		eventModal.Title.Text = title;
 		eventModal.Description.Text = description;
 		eventModal.Show();
+	}
+
+	public void DeclareWinner(int winnerIndex)
+	{
+		winnerScreen.label.Text = $"Player {winnerIndex} won!";
+		winnerScreen.Show();
 	}
 	
 }

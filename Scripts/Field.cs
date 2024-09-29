@@ -1,6 +1,8 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+
 public partial class Field : Area2D
 {
 	[Signal]
@@ -119,7 +121,7 @@ public partial class Field : Area2D
 			currentPlayer.hasThirdBluePrint &&
 			currentPlayer.hasFourthBluePrint)
 		{
-			GD.Print("WON!");
+			Globals.Instance.Board.DeclareWinner(Globals.Instance.Pawns.IndexOf(currentPlayer) + 1);
 		}
 	}
 	

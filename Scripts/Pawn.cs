@@ -18,14 +18,18 @@ public partial class Pawn : Area2D
 	
 	public bool skipsNextTurn = false;
 
-	public bool hasFirstBluePrint = false;
-	public bool hasSecondBluePrint = false;
-	public bool hasThirdBluePrint = false;
-	public bool hasFourthBluePrint = false;
+	public bool hasFirstBluePrint = true;
+	public bool hasSecondBluePrint = true;
+	public bool hasThirdBluePrint = true;
+	public bool hasFourthBluePrint = true;
+
+	public Sprite2D sprite;
 
 	public override void _Ready()
 	{
 		targetPosition = GlobalPosition;
+
+		sprite = GetNode<Sprite2D>("Lemur");
 	}
 
 	public override void _Process(double delta)

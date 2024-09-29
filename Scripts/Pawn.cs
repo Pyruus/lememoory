@@ -18,10 +18,10 @@ public partial class Pawn : Area2D
 	
 	public bool skipsNextTurn = false;
 
-	public bool hasFirstBluePrint = true;
-	public bool hasSecondBluePrint = true;
-	public bool hasThirdBluePrint = true;
-	public bool hasFourthBluePrint = true;
+	public bool hasFirstBluePrint = false;
+	public bool hasSecondBluePrint = false;
+	public bool hasThirdBluePrint = false;
+	public bool hasFourthBluePrint = false;
 
 	public Sprite2D sprite;
 

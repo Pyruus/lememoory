@@ -8,7 +8,6 @@ public partial class EventFactory
 		Random rnd = new Random();
 		
 		var randomNumber = rnd.Next(5);
-			 randomNumber = 4;
 		switch(randomNumber) {
 			case 0:
 				return new MoveToCornerEvent(Globals.Instance.CurrentPlayerPawn);

@@ -60,17 +60,17 @@ public partial class Item : Area2D
 			case ItemType.BlueprintB:
 				Name = "Second blueprint";
 				Description = "Gather 4 to rule them all";
-				Sprite = (Texture2D)GD.Load("res://Assets/blueprintA.png");
+				Sprite = (Texture2D)GD.Load("res://Assets/blueprintB.png");
 				break;
 			case ItemType.BlueprintC:
 				Name = "Third blueprint";
 				Description = "Gather 4 to rule them all";
-				Sprite = (Texture2D)GD.Load("res://Assets/blueprintA.png");
+				Sprite = (Texture2D)GD.Load("res://Assets/blueprintC.png");
 				break;
 			case ItemType.BlueprintD:
 				Name = "Third blueprint";
 				Description = "Gather 4 to rule them all";
-				Sprite = (Texture2D)GD.Load("res://Assets/blueprintA.png");
+				Sprite = (Texture2D)GD.Load("res://Assets/blueprintD.png");
 				break;
 		   
 		   

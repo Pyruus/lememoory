@@ -195,16 +195,44 @@ public partial class Board : Node2D
 		switch (rewardIndex)
 		{
 			case 1:
-				currentPlayer.hasFirstBluePrint = true;
+				if (!currentPlayer.hasFirstBluePrint)
+				{
+					var newItem = (Item)GD.Load<PackedScene>("res://Scenes/Item.tscn").Instantiate();
+					newItem.setupItem(Item.ItemType.BlueprintA, currentPlayer);
+					currentPlayer.items.Add(newItem);
+					Globals.Instance.Board.drawCurrentPawnItems();
+					currentPlayer.hasFirstBluePrint = true;	
+				}
 				break;
 			case 2:
-				currentPlayer.hasSecondBluePrint = true;
+				if (!currentPlayer.hasSecondBluePrint)
+				{
+					var newItem = (Item)GD.Load<PackedScene>("res://Scenes/Item.tscn").Instantiate();
+					newItem.setupItem(Item.ItemType.BlueprintB, currentPlayer);
+					currentPlayer.items.Add(newItem);
+					Globals.Instance.Board.drawCurrentPawnItems();
+					currentPlayer.hasSecondBluePrint = true;	
+				}
 				break;
 			case 3:
-				currentPlayer.hasThirdBluePrint = true;
+				if (!currentPlayer.hasThirdBluePrint)
+				{
+					var newItem = (Item)GD.Load<PackedScene>("res://Scenes/Item.tscn").Instantiate();
+					newItem.setupItem(Item.ItemType.BlueprintC, currentPlayer);
+					currentPlayer.items.Add(newItem);
+					Globals.Instance.Board.drawCurrentPawnItems();
+					currentPlayer.hasThirdBluePrint = true;	
+				}
 				break;
 			case 4:
-				currentPlayer.hasFourthBluePrint = true;
+				if (!currentPlayer.hasThirdBluePrint)
+				{
+					var newItem = (Item)GD.Load<PackedScene>("res://Scenes/Item.tscn").Instantiate();
+					newItem.setupItem(Item.ItemType.BlueprintD, currentPlayer);
+					currentPlayer.items.Add(newItem);
+					Globals.Instance.Board.drawCurrentPawnItems();
+					currentPlayer.hasFourthBluePrint = true;	
+				}
 				break;
 		}
 	}
@@ -238,6 +266,8 @@ public partial class Board : Node2D
 		AddChild(item); // Add the new item
 		index++;
 	}
+	
+	QueueRedraw();
 }
 
 	private void OnEventResolved(string title, string description)

@@ -16,3 +16,6 @@ offset_right = 174.0
 offset_bottom = 139.0
 mouse_default_cursor_shape = 2
 text = "Roll"
+
+[node name="Pawn2" parent="." instance=ExtResource("1_08rqc")]
+position = Vector2(323, 374)

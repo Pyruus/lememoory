@@ -10,6 +10,7 @@ public partial class Globals : Node
 	public Pawn CurrentPlayerPawn { get; set; }
 	public Board Board {get; set;}
 	public List<Field> Tiles { get; set; }
+	public List<Pawn> Pawns { get; set; }
 	public override void _Ready()
 	{
 		Instance = this;

@@ -20,7 +20,13 @@ public partial class Board : Node2D
 	{
 		Globals.Instance.Board = this;
 		var currentPawn = GetNode<Pawn>("Pawn");
+		var secondPawn = GetNode<Pawn>("Pawn2");
 		Globals.Instance.CurrentPlayerPawn = currentPawn;
+		Globals.Instance.Pawns = new List<Pawn>
+		{
+			currentPawn,
+			secondPawn
+		};
 		rollButton = GetNode<Button>("RollButton");
 		rollButton.Pressed += OnRollButtonPressed;
 		
@@ -31,6 +37,10 @@ public partial class Board : Node2D
 		currentPlayer.Position = new Vector2(tiles.FirstOrDefault().Position.X + fieldSizePixels/2, tiles.FirstOrDefault().Position.Y + fieldSizePixels/2);
 		currentPlayer.CurrentField = tiles.FirstOrDefault();
 		currentPlayer.Connect("EventResolved", new Callable(this, nameof(OnEventResolved)));
+
+		secondPawn.Position = new Vector2(tiles.LastOrDefault().Position.X + fieldSizePixels / 2, tiles.LastOrDefault().Position.Y + fieldSizePixels / 2);
+		secondPawn.CurrentField = tiles.LastOrDefault();
+		secondPawn.Connect("EventResolved", new Callable(this, nameof(OnEventResolved)));
 		
 		questionModal = (QuestionMenu)GD.Load<PackedScene>("res://Scenes/question_menu.tscn").Instantiate();
 		questionModal.Position = new Vector2(0,0);

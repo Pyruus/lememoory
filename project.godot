@@ -23,6 +23,7 @@ Globals="*res://Globals.cs"
 
 window/size/viewport_width=1440
 window/size/viewport_height=720
+window/size/mode=2
 
 [dotnet]
 

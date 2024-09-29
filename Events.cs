@@ -20,14 +20,20 @@ public class MoveToCornerEvent:Event {
 	public override void resolve() {
 		this.currentPlayerPawn.Position = new Vector2(Globals.Instance.Tiles[0].Position.X + Globals.FieldSizePixels/2, Globals.Instance.Tiles[0].Position.Y + Globals.FieldSizePixels/2);
 		this.currentPlayerPawn.CurrentField = Globals.Instance.Tiles[0];
+		currentPlayerPawn.EmitEventResolvedSignal(title, modalMessage);
 	}
 }
 
 public class PeacefulEvent: Event {
 	public string title = "Peaceful silence";
 	public string modalMessage = "Nothing happens in this forest. Really.";
+	Pawn currentPlayerPawn;
+	public PeacefulEvent(Pawn currentPlayer) {
+		this.currentPlayerPawn = currentPlayer;
+	}
 	public override void resolve() {
 		//nothing happens
+		currentPlayerPawn.EmitEventResolvedSignal(title, modalMessage);
 	}
 }
 
@@ -44,6 +50,7 @@ public class TrapGetEvent: Event {
 		var newItem = (Item)GD.Load<PackedScene>("res://Scenes/Item.tscn").Instantiate();
 		newItem.setupItem(Item.ItemType.Boombox, this.currentPlayerPawn);
 		this.currentPlayerPawn.items.Add(newItem);
+		currentPlayerPawn.EmitEventResolvedSignal(title, modalMessage);
 	}
 	
 }
@@ -58,6 +65,7 @@ public class AdditionalRoundEvent: Event {
 	public override void resolve() {
 		
 		// Globals.Instance.NextPlayer = this.currentPlayerPawn;
+		currentPlayerPawn.EmitEventResolvedSignal(title, modalMessage);
 	}
 }
 
@@ -78,5 +86,6 @@ public class MoveToRandomFieldEvent: Event {
 		
 		this.currentPlayerPawn.Position = new Vector2(Globals.Instance.Tiles[randomNumber].Position.X + Globals.FieldSizePixels/2, Globals.Instance.Tiles[randomNumber].Position.Y + Globals.FieldSizePixels/2);
 		this.currentPlayerPawn.CurrentField = Globals.Instance.Tiles[randomNumber];
+		currentPlayerPawn.EmitEventResolvedSignal(title, modalMessage);
 	}
 }

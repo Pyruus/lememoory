@@ -6,6 +6,9 @@ public partial class Pawn : Area2D
 {
 	[Export]
 	public float Speed = 200.0f; // Adjust this to change movement speed
+	
+	[Signal]
+	public delegate void EventResolvedEventHandler(string title, string description);
 
 	public Field CurrentField;
 
@@ -40,6 +43,11 @@ public partial class Pawn : Area2D
 	public override void _Input(InputEvent @event)
 	{
 		
+	}
+
+	public void EmitEventResolvedSignal(string title, string description)
+	{
+		EmitSignal(SignalName.EventResolved, title, description);
 	}
 	
 }

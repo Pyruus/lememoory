@@ -10,6 +10,7 @@ public partial class Board : Node2D
 	private Dice dice;
 	private Button rollButton;
 	private QuestionMenu questionModal;
+	private EventResolvedModal eventModal;
 	
 	private int fieldSizePixels = 128;
 	private Texture2D backpackSprite;
@@ -29,6 +30,7 @@ public partial class Board : Node2D
 		currentPlayer = GetNode<Pawn>("Pawn");
 		currentPlayer.Position = new Vector2(tiles.FirstOrDefault().Position.X + fieldSizePixels/2, tiles.FirstOrDefault().Position.Y + fieldSizePixels/2);
 		currentPlayer.CurrentField = tiles.FirstOrDefault();
+		currentPlayer.Connect("EventResolved", new Callable(this, nameof(OnEventResolved)));
 		
 		questionModal = (QuestionMenu)GD.Load<PackedScene>("res://Scenes/question_menu.tscn").Instantiate();
 		questionModal.Position = new Vector2(0,0);
@@ -40,6 +42,10 @@ public partial class Board : Node2D
 		rollButton.Position = new Vector2(4.25f * fieldSizePixels, 3.5f * fieldSizePixels + fieldSizePixels/4 + 10);
 		rollButton.Size = new Vector2(fieldSizePixels/2, fieldSizePixels/4);
 		AddChild(dice);
+		
+		eventModal = (EventResolvedModal)GD.Load<PackedScene>("res://Scenes/event_resolved_modal.tscn").Instantiate();
+		AddChild(eventModal);
+		eventModal.Hide();
 	}
 	
 
@@ -208,6 +214,11 @@ public partial class Board : Node2D
 	}
 
 
-}
-
+	private void OnEventResolved(string title, string description)
+	{
+		eventModal.Title.Text = title;
+		eventModal.Description.Text = description;
+		eventModal.Show();
+	}
+	
 }

@@ -34,7 +34,7 @@ public partial class CategoriesList : MenuButton
 				break;
 			case 1:
 				Globals.SelectedQuestionsCategory.name = "Sports";
-				Globals.SelectedQuestionsCategory.jsonName = "questions_sports.json";
+				Globals.SelectedQuestionsCategory.jsonName = "questions_sport.json";
 				break;
 			case 2:
 				Globals.SelectedQuestionsCategory.name = "Kids";

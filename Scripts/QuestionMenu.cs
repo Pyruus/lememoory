@@ -14,6 +14,7 @@ public partial class QuestionMenu : Control
 	private VBoxContainer answerContainer;
 	private Label feedbackLabel;
 	private Button closeButton;
+	private PanelContainer panelContainer;
 
 	private List<Button> answerButtons = new();
 	private int correctAnswerIndex;
@@ -28,8 +29,11 @@ public partial class QuestionMenu : Control
 		answerContainer = GetNode<VBoxContainer>("PanelContainer/MarginContainer/VBoxContainer/AnswerContainer");
 		feedbackLabel = GetNode<Label>("PanelContainer/MarginContainer/VBoxContainer/FeedbackLabel");
 		closeButton = GetNode<Button>("PanelContainer/MarginContainer/VBoxContainer/CloseButton");
+		panelContainer = GetNode<PanelContainer>("PanelContainer");
 
 		closeButton.Pressed += OnCloseButtonPressed;
+		
+		panelContainer.Size = new Vector2(GetViewport().GetVisibleRect().Size.X, GetViewport().GetVisibleRect().Size.Y);
 
 		feedbackLabel.Hide();
 		closeButton.Hide();
@@ -44,7 +48,7 @@ public partial class QuestionMenu : Control
 	
 	private void LoadQuestions()
 	{
-		var jsonFile = FileAccess.Open("res://Questions/questions.json", FileAccess.ModeFlags.Read);
+		var jsonFile = FileAccess.Open($"res://Questions/{Globals.SelectedQuestionsCategory.jsonName}", FileAccess.ModeFlags.Read);
 		var jsonString = jsonFile.GetAsText();
 		jsonFile.Close();
 

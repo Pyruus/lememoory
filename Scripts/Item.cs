@@ -3,7 +3,7 @@ using System;
 
 public partial class Item : Area2D
 {
-	public enum ItemType { Boombox }
+	public enum ItemType { Boombox, BlueprintA, BlueprintB, BlueprintC, BlueprintD }
 
 	public string Name { get; private set; }
 	public Pawn Owner { get; set; }
@@ -52,6 +52,27 @@ public partial class Item : Area2D
 				Description = "Non stop playing pop hits. Use it to place it on a field. Pawn that enters that field loses its next turn.";
 				Sprite = (Texture2D)GD.Load("res://Assets/boombox.png");
 				break;
+			case ItemType.BlueprintA:
+				Name = "First blueprint";
+				Description = "Gather 4 to rule them all";
+				Sprite = (Texture2D)GD.Load("res://Assets/blueprintA.png");
+				break;
+			case ItemType.BlueprintB:
+				Name = "Second blueprint";
+				Description = "Gather 4 to rule them all";
+				Sprite = (Texture2D)GD.Load("res://Assets/blueprintA.png");
+				break;
+			case ItemType.BlueprintC:
+				Name = "Third blueprint";
+				Description = "Gather 4 to rule them all";
+				Sprite = (Texture2D)GD.Load("res://Assets/blueprintA.png");
+				break;
+			case ItemType.BlueprintD:
+				Name = "Third blueprint";
+				Description = "Gather 4 to rule them all";
+				Sprite = (Texture2D)GD.Load("res://Assets/blueprintA.png");
+				break;
+		   
 		   
 		}
 	}
@@ -75,6 +96,11 @@ public partial class Item : Area2D
 				Owner.CurrentField.placable = new BoomboxPlacable(Sprite);
 				Owner.items.Remove(this);
 				Globals.Instance.Board.drawCurrentPawnItems();
+				break;
+			case ItemType.BlueprintA:
+			case ItemType.BlueprintB:
+			case ItemType.BlueprintC:
+			case ItemType.BlueprintD:
 				break;
 		   
 		}

@@ -48,7 +48,10 @@ public partial class Board : Node2D
 		eventModal.Hide();
 	}
 	
-
+	public override void _Draw() {
+		int rowsCount = 7;
+		DrawTexture(backpackSprite, new Vector2(32, rowsCount * Globals.FieldSizePixels + 32));
+	}
 	private void CreateBoard()
 	{
 		var boardLayout = new Field.TileType?[,] {
@@ -253,7 +256,6 @@ public partial class Board : Node2D
 	foreach (var item in itemsToRemove)
 	{
 		RemoveChild(item);
-		item.QueueFree();
 	}
 
 	// Add the current pawn's items and reposition them

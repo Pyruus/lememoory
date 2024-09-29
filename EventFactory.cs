@@ -17,7 +17,7 @@ public partial class EventFactory
 			case 2:
 				return new AdditionalRoundEvent(Globals.Instance.CurrentPlayerPawn);
 			case 3:
-				return new PeacefulEvent();
+				return new PeacefulEvent(Globals.Instance.CurrentPlayerPawn);
 			case 4: 
 				return new TrapGetEvent(Globals.Instance.CurrentPlayerPawn);
 			default:

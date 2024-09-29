@@ -1,24 +1,82 @@
 using Godot;
 using System;
 
-public abstract class Item 
+public partial class Item : Area2D
 {
-	public string name;
-	public Pawn owner;
-	public string description;
-	public Texture2D sprite;
-	public abstract void action();
-}
+	public enum ItemType { Boombox }
 
-public class Boombox: Item {
-	public string name = "Lemurs' Boombox";
-	public string description = "Non stop playing pop hits. Use it to place it on a field. Pawn that enters that field looses its next turn.";
-	public Boombox(string textureName, Pawn owner) {
-		this.sprite = (Texture2D)GD.Load("res://Assets/" + textureName);
-		this.owner = owner;
+	public string Name { get; private set; }
+	public Pawn Owner { get; set; }
+	public string Description { get; private set; }
+	public Texture2D Sprite { get; private set; }
+
+	public ItemType type;
+
+	[Signal]
+	public delegate void ClickedEventHandler(Item item);
+
+	public Item()
+	{
+		
 	}
 	
-	public override void action() {
-		this.owner.CurrentField.placable = new BoomboxPlacable(this.sprite);
+	public void setupItem(ItemType itemType, Pawn owner) {
+		type = itemType;
+		Owner = owner;
+		SetupItem();
+	}
+
+	public override void _Ready()
+	{
+		var sprite = new Sprite2D();
+		sprite.Texture = Sprite;
+		sprite.Centered = false;
+		AddChild(sprite);
+
+		var collisionShape = new CollisionShape2D();
+		var shape = new RectangleShape2D();
+		shape.Size = new Vector2(Globals.FieldSizePixels, Globals.FieldSizePixels);
+		collisionShape.Shape = shape;
+		AddChild(collisionShape);
+
+		InputPickable = true;
+		Connect("input_event", new Callable(this, nameof(OnInputEvent)));
+	}
+
+	private void SetupItem()
+	{
+		switch (type)
+		{
+			case ItemType.Boombox:
+				Name = "Lemurs' Boombox";
+				Description = "Non stop playing pop hits. Use it to place it on a field. Pawn that enters that field loses its next turn.";
+				Sprite = (Texture2D)GD.Load("res://Assets/boombox.png");
+				break;
+		   
+		}
+	}
+
+	private void OnInputEvent(Node viewport, InputEvent @event, int shapeIdx)
+	{
+		if (@event is InputEventMouseButton mouseEvent &&
+			mouseEvent.ButtonIndex == MouseButton.Left &&
+			mouseEvent.Pressed)
+		{
+			EmitSignal(SignalName.Clicked, this);
+			Action();
+		}
+	}
+
+	public void Action()
+	{
+		switch (type)
+		{
+			case ItemType.Boombox:
+				Owner.CurrentField.placable = new BoomboxPlacable(Sprite);
+				Owner.items.Remove(this);
+				Globals.Instance.Board.drawCurrentPawnItems();
+				break;
+		   
+		}
 	}
 }

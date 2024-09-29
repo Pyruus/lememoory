@@ -18,6 +18,7 @@ public partial class Board : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		Globals.Instance.Board = this;
 		var currentPawn = GetNode<Pawn>("Pawn");
 		Globals.Instance.CurrentPlayerPawn = currentPawn;
 		rollButton = GetNode<Button>("RollButton");
@@ -47,21 +48,6 @@ public partial class Board : Node2D
 		eventModal.Hide();
 	}
 	
-	public override void _Process(double delta){
-		drawCurrentPawnItems();
-	}
-	
-	public override void _Draw() {
-		int index = 1;
-		int rowsCount = 7;
-		DrawTexture(backpackSprite, new Vector2(32, rowsCount * Globals.FieldSizePixels + 32));
-		foreach(var item in Globals.Instance.CurrentPlayerPawn.items) {
-			GD.Print(item);
-		
-			DrawTexture(item.sprite, new Vector2(index * Globals.FieldSizePixels, rowsCount * Globals.FieldSizePixels + 32));
-			index++;
-		}
-	}
 
 	private void CreateBoard()
 	{
@@ -224,10 +210,35 @@ public partial class Board : Node2D
 	}
 	
 	public void drawCurrentPawnItems() {
-			QueueRedraw();
-		
-		
+	// Collect all Item children to remove them later
+	var itemsToRemove = new List<Item>();
+
+	foreach (var child in GetChildren())
+	{
+		if (child is Item item)
+		{
+			itemsToRemove.Add(item); // Collect item to remove later
+		}
 	}
+
+	// Now safely remove and free the collected items
+	foreach (var item in itemsToRemove)
+	{
+		RemoveChild(item);
+		item.QueueFree();
+	}
+
+	// Add the current pawn's items and reposition them
+	int index = 1;
+	int rowsCount = 7;
+	foreach (var item in Globals.Instance.CurrentPlayerPawn.items)
+	{
+		item.Position = new Vector2(index * Globals.FieldSizePixels, rowsCount * Globals.FieldSizePixels);
+		GD.Print("added");
+		AddChild(item); // Add the new item
+		index++;
+	}
+
 
 	private void OnEventResolved(string title, string description)
 	{

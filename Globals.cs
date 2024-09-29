@@ -8,6 +8,7 @@ public partial class Globals : Node
 	public static int FieldSizePixels = 128;
 	public static (string name, string jsonName) SelectedQuestionsCategory = ("General Knowledge", "questions.json");
 	public Pawn CurrentPlayerPawn { get; set; }
+	public Board Board {get; set;}
 	public List<Field> Tiles { get; set; }
 	public override void _Ready()
 	{

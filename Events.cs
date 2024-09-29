@@ -41,7 +41,9 @@ public class TrapGetEvent: Event {
 	}
 	
 	public override void resolve() {
-		this.currentPlayerPawn.items.Add(new Boombox("dzewo.png", this.currentPlayerPawn));
+		var newItem = (Item)GD.Load<PackedScene>("res://Scenes/Item.tscn").Instantiate();
+		newItem.setupItem(Item.ItemType.Boombox, this.currentPlayerPawn);
+		this.currentPlayerPawn.items.Add(newItem);
 	}
 	
 }

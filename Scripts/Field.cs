@@ -104,6 +104,7 @@ public partial class Field : Area2D
 	
 	public void getEvent() {
 		EventFactory.getEvent().resolve();
+		board.drawCurrentPawnItems();
 	}
 	
 	private void OnMouseEntered()
